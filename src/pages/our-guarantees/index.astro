@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import QuoteForm from '../../components/QuoteForm.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout
+  path="/our-guarantees/"
+  title={`Contractor Warranty & Guarantees | ${site.name}`}
+  description="Written warranty, fixed pricing, and code-compliant construction on every Calgary project."
+>
+  <PageHero
+    kicker="Guarantees"
+    title="Our Guarantees & Workmanship Warranty"
+    subtitle="Written warranty, fixed pricing, and code-compliant construction on every Calgary project."
+    image="/images/portfolio/WhatsApp_Image_2026-09-22_at_11.34.10__2_-ad087f2e-8fcf-4de9-8977-36cb9ee64312.jpg"
+  />
+
+  <PageSplit
+    kicker="Peace of mind"
+    title="Clear expectations from day one"
+    image="/images/hero/about-hero.jpg"
+    imageAlt="Finished living room after an Alberta Elite Construction remodel"
+    href="/contact/"
+    cta="Get a quote →"
+  >
+    <p>
+      Choosing a contractor is one of the most significant decisions you will make as a homeowner.
+      You deserve clear expectations, reliable workmanship, and lasting peace of mind.
+    </p>
+    <p>
+      That is why we back every project with a written warranty and commitments that apply from the
+      first day on site to long after we hand over the keys.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Every project"
+    title="General guarantees"
+    items={[
+      { title: '2-year workmanship warranty', text: 'We return to correct labour deficiencies at no charge.' },
+      { title: 'Fixed written pricing', text: 'The price you approve is the price you pay.' },
+      { title: 'Code-compliant construction', text: 'Alberta Building Code and City of Calgary requirements.' },
+      { title: 'Permit handling', text: 'We manage applications and inspections where required.' },
+      { title: 'Licensed and insured', text: 'Full liability insurance for residential contracting.' },
+      { title: 'Final walk-through', text: 'Outstanding items resolved before final payment.' },
+    ]}
+  />
+
+  <section class="k-page-form">
+    <div class="k-form-wrap">
+      <p class="k-kicker k-kicker-dark">Ask us</p>
+      <h2>Questions about a warranty</h2>
+      <QuoteForm />
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

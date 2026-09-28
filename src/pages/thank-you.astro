@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  path="/thank-you/"
+  title={`Thank You | ${site.title}`}
+  description="Thank you for contacting Alberta Elite Construction."
+>
+  <section class="k-page-plain">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Sent</p>
+      <h1>Thank you</h1>
+      <p>
+        Your message was sent to {site.email}. Our team will reach out shortly to discuss your Calgary
+        remodeling project.
+      </p>
+      <a class="k-pill k-pill-solid" href="/">Back to home</a>
+    </div>
+  </section>
+</BaseLayout>

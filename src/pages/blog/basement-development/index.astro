@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import BlogSidebar from '../../../components/BlogSidebar.astro';
+import BlogPostList from '../../../components/BlogPostList.astro';
+import { site } from '../../../data/site';
+import { postsByCategory } from '../../../data/blog';
+---
+
+<BaseLayout
+  path="/blog/basement-development/"
+  title={`Basement Development Calgary | Expert Tips | ${site.name}`}
+  description="Practical tips, local insights, and inspiration for your Calgary basement project."
+>
+  <PageHero
+    kicker="Journal"
+    title="Basement development blog"
+    subtitle="Practical tips, local insights, and inspiration for your Calgary basement project."
+    image="/images/hero/hero-basement.jpg"
+  />
+
+  <section class="k-page-section">
+    <div class="k-blog-layout">
+      <BlogPostList posts={postsByCategory('basement-development')} />
+      <BlogSidebar active="basement-development" />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  path="/contact/"
+  title={`Contact Us | ${site.name}`}
+  description="Contact Alberta Elite Construction in Calgary. Call (587) 572-0282 or email sales@albertaec.ca."
+>
+  <PageHero
+    kicker="Project request"
+    title="Contact us"
+    subtitle="Share a few details about the project. We will follow up with a clear next step and a written quote after we see the site."
+    image="/images/hero/hero-living-room.jpg"
+  />
+
+  <section class="k-contact" id="request">
+    <div class="k-wrap">
+      <div class="k-contact-intro">
+        <h2>Tell us about the home<br />you want to build.</h2>
+      </div>
+
+      <div class="k-contact-board">
+        <div class="k-contact-form">
+          <QuoteForm tone="light" />
+        </div>
+
+        <aside class="k-contact-aside">
+          <p class="k-kicker">Reach us directly</p>
+          <h3>Prefer to talk first?</h3>
+          <ul class="k-contact-facts">
+            <li>
+              <span>Phone</span>
+              <a href={site.phoneHref}>{site.phoneDisplay}</a>
+            </li>
+            <li>
+              <span>Email</span>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </li>
+            <li>
+              <span>Hours</span>
+              <b>{site.hours.display}</b>
+            </li>
+            <li>
+              <span>Studio</span>
+              <a href={site.mapUrl} target="_blank" rel="noopener noreferrer">{site.address.full}</a>
+            </li>
+          </ul>
+          <div class="k-contact-map">
+            <iframe
+              title="Alberta Elite Construction on Google Maps"
+              src={site.mapEmbed}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

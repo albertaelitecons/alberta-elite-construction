@@ -1,0 +1,40 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  titleRest?: string;
+  accent?: string;
+  subtitle?: string;
+  image?: string;
+}
+
+const {
+  kicker,
+  title,
+  titleRest,
+  accent,
+  subtitle,
+  image = '/images/hero/hero-kitchen.jpg',
+} = Astro.props;
+---
+
+<section class="k-page-hero">
+  <img src={image} alt="" loading="eager" />
+  <div class="k-page-hero-overlay"></div>
+  <div class="k-hero-copy k-page-hero-copy">
+    {kicker && <p class="k-kicker">{kicker}</p>}
+    <h1 class:list={[titleRest && 'k-hero-title']}>
+      {titleRest ? (
+        <>
+          <span class="k-hero-lead">{title}</span>
+          <span class="k-hero-rest">{titleRest}</span>
+        </>
+      ) : (
+        title
+      )}
+      {accent && <span class="k-hero-accent"> {accent}</span>}
+    </h1>
+    {subtitle && <p class="k-hero-sub">{subtitle}</p>}
+    <a class="k-pill" href="/contact/">Get a quote →</a>
+  </div>
+</section>

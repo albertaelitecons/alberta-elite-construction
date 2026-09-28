@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'How much does bathroom remodeling cost in Calgary?',
+    answer:
+      'Powder room refreshes, ensuite upgrades, and full bathroom remodels vary based on size, tile selection, plumbing moves, and fixture quality. We provide itemized quotes after reviewing your existing layout and goals.',
+  },
+  {
+    question: 'How long does a bathroom renovation take?',
+    answer:
+      'Smaller bathrooms may take a few weeks; larger ensuites with custom tile and plumbing relocations can take longer. We outline milestones before work starts.',
+  },
+  {
+    question: 'Do bathroom remodels need permits in Calgary?',
+    answer:
+      'Permits are typically required when plumbing, ventilation, or structural elements change. We handle permit planning as part of the project scope.',
+  },
+  {
+    question: 'Can you improve bathroom ventilation and moisture control?',
+    answer:
+      'Yes. Proper exhaust fans, waterproofing behind tile, and quality installation details are standard on our bathroom remodeling projects, especially important in Alberta homes.',
+  },
+];
+---
+
+<BaseLayout
+  path="/bathroom-remodeling-in-calgary/"
+  title={`Bathroom Remodeling Calgary | ${site.name}`}
+  description="Bathroom remodeling in Calgary - ensuites, tile, fixtures, and waterproof renovations by licensed contractors."
+  ogImage="/images/services/bathroom.jpg"
+>
+  <PageHero
+    kicker="Bathroom remodeling"
+    title="Bathroom Remodeling in Calgary"
+    subtitle="Spa-inspired ensuites, powder rooms, and durable waterproof renovations."
+    image="/images/services/bathroom.jpg"
+  />
+
+  <PageIntro kicker="Our approach" title="Waterproof first, then the finish">
+    <p class="k-lead">
+      From powder rooms to primary ensuites, Alberta Elite Construction provides bathroom remodeling
+      in Calgary with attention to waterproofing, ventilation, and long-term durability, not just
+      surface aesthetics.
+    </p>
+    <p class="k-lead">
+      Alberta's climate makes moisture management essential. We use proven assemblies behind tile
+      and finish with materials selected for daily use.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="Ensuite baths"
+    title="A bath you can use every day"
+    image="/images/services/bathroom.jpg"
+    imageAlt="Calgary ensuite bathroom with tiled shower, tub, and vanity"
+    media="start"
+    objectPosition="center 78%"
+  >
+    <p>
+      Tile and fixtures only last if the waterproofing behind them is right. We remodel Calgary
+      bathrooms with assemblies that handle steam, freeze-thaw, and daily use.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Included"
+    title="Bathroom remodeling services"
+    columns={3}
+    items={[
+      { title: 'Layout redesign', text: 'Space planning that makes a small bathroom feel open.' },
+      { title: 'Custom showers', text: 'Tubs, glass enclosures, and tiled wet rooms.' },
+      { title: 'Tile and stone', text: 'Floor and wall tile installed for a watertight finish.' },
+      { title: 'Vanities and storage', text: 'Vanities, mirrors, and built-in storage.' },
+      { title: 'Plumbing upgrades', text: 'Fixtures, valves, and ventilation coordinated on site.' },
+      { title: 'Comfort details', text: 'Heated flooring and accessibility updates where needed.' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary bathroom remodel runs"
+    steps={[
+      {
+        title: 'Measure the room',
+        text: 'We check layout, plumbing stacks, ventilation, and what you want from the new bathroom.',
+        detail: 'Waterproofing, tile, and fixture choices are sketched before we price the job.',
+      },
+      {
+        title: 'Written quote',
+        text: 'The approved scope covers demolition, plumbing, tile, vanity, and finishes at a fixed price.',
+        detail: 'Permit needs are called out in writing when plumbing or ventilation changes.',
+      },
+      {
+        title: 'Waterproof and build',
+        text: 'We strip the room, set the wet assembly, then install tile, glass, and fixtures in sequence.',
+        detail: 'Nearby rooms stay protected while the bathroom is out of service.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We test water, fans, and heat, then close leftover items with you before final payment.',
+        detail: 'Our 2-year workmanship warranty covers the labour on the remodel.',
+      },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Bathroom remodeling in Calgary"
+    lead="Powder rooms, ensuites, and full bathroom remodels vary with size, tile, plumbing moves, and fixture quality. We write a fixed-scope quote after reviewing the existing layout."
+    heading="Transparent starting prices for Calgary bathrooms"
+    image="/images/portfolio/WhatsApp_Image_2026-09-22_at_11.40.19__2_-4557bd11-c83f-461d-b8a0-a57e6b731e5e.jpg"
+    imageAlt="Marble tile shower enclosure during a bathroom remodel"
+    items={[
+      { title: 'Powder room refresh', price: 'Quoted after a site visit' },
+      { title: 'Full bathroom remodel', price: 'Quoted after a site visit' },
+      { title: 'Primary ensuite upgrade', price: 'Quoted after a site visit' },
+      { title: 'Waterproof tile and glass package', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Bathroom Remodeling FAQs" items={faqs} />
+  <ContactCTA>
+    Get a free quote for your Calgary bathroom remodeling project.
+  </ContactCTA>
+</BaseLayout>

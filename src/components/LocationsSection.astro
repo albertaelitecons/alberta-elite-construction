@@ -1,0 +1,44 @@
+---
+import { site } from '../data/site';
+import { locationLinks } from '../data/locations';
+---
+
+<section class="k-locations" id="locations">
+  <div class="k-wrap">
+    <div class="k-locations-body">
+      <div class="k-locations-copy">
+        <p class="k-kicker k-kicker-dark">Locations</p>
+        <h2>Serving Calgary & Surrounding Communities<br />for more than 15 years</h2>
+        <p class="k-locations-lead">
+          We provide construction and renovation services throughout Calgary and the surrounding
+          areas, helping homeowners improve the spaces they use every day.
+        </p>
+        <p class="k-locations-lead">
+          From kitchens and bathrooms to basements, garages, decks, fences, roofs, and
+          surveillance, our team works across the region on projects of all sizes.
+        </p>
+        <ul class="k-locations-grid">
+          {
+            locationLinks.map((place) => (
+              <li>
+                <a href={place.href}>{place.name}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="k-text-link" href={site.mapUrl} target="_blank" rel="noreferrer">
+          View us on Google Maps
+        </a>
+      </div>
+      <div class="k-locations-map">
+        <iframe
+          title="Alberta Elite Construction on Google Maps"
+          src={site.mapEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

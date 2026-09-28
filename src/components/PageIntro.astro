@@ -1,0 +1,44 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  href?: string;
+  cta?: string;
+  figure?: string;
+  figureAlt?: string;
+}
+
+const {
+  kicker,
+  title,
+  href = '/contact/',
+  cta = 'Get a quote →',
+  figure,
+  figureAlt = '',
+} = Astro.props;
+---
+
+<section class="k-about">
+  <div class="k-wrap k-about-grid">
+    {
+      figure ? (
+        <div class="k-about-figure">
+          <img src={figure} alt={figureAlt} />
+        </div>
+      ) : (
+        <div class="k-years">
+          <strong>15+</strong>
+          <span>Years of experience</span>
+        </div>
+      )
+    }
+    <div class="k-about-mid">
+      <p class="k-kicker">{kicker}</p>
+      <h2>{title}</h2>
+    </div>
+    <div class="k-about-copy">
+      <slot />
+      <a class="k-pill k-pill-ghost" href={href}>{cta}</a>
+    </div>
+  </div>
+</section>

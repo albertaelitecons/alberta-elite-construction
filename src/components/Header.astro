@@ -1,0 +1,132 @@
+---
+import { site, serviceLinks, blogCategories } from '../data/site';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navClass =
+  'whitespace-nowrap px-2 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#222] transition hover:text-brand xl:px-3 xl:text-[13px]';
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/' || currentPath === '';
+  return currentPath.startsWith(href.replace(/\/$/, ''));
+};
+---
+
+<header class="z-50 border-b border-[#f0f0f0] bg-white">
+  <div
+    class="mx-auto flex max-w-[1240px] items-center justify-between gap-3 px-5 py-4 lg:grid lg:grid-cols-[220px_minmax(0,1fr)_180px] lg:px-6 lg:py-5"
+  >
+    <a href="/" class="flex min-w-0 items-center gap-3">
+      <img src="/logo.png" alt={site.name} width="58" height="58" class="h-[58px] w-[58px] shrink-0 object-contain" />
+      <span class="hidden leading-[1.15] sm:block">
+        <span class="block font-display text-[22px] font-semibold uppercase tracking-[0.04em] text-ink">
+          Alberta Elite
+        </span>
+        <span class="block text-[10px] font-semibold uppercase tracking-[0.22em] text-[#8a8a8a]">
+          Construction
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center justify-center lg:flex" aria-label="Primary">
+      <a href="/" class:list={[navClass, isActive('/') && 'text-brand']}>Home</a>
+      <a href="/about/" class:list={[navClass, isActive('/about') && 'text-brand']}>About</a>
+
+      <div class="group relative">
+        <button type="button" class:list={[navClass, serviceLinks.some((l) => isActive(l.href)) && 'text-brand']}>
+          Services
+        </button>
+        <div
+          class="invisible absolute left-1/2 top-full z-50 min-w-[240px] -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+        >
+          <div class="border border-[#eee] bg-white py-2 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
+            {
+              serviceLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class="block px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#333] hover:bg-[#fafafa] hover:text-brand"
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <a href="/portfolio/" class:list={[navClass, isActive('/portfolio') && 'text-brand']}>Portfolio</a>
+
+      <div class="group relative">
+        <a href="/blog/" class:list={[navClass, currentPath.startsWith('/blog') && 'text-brand']}>Blog</a>
+        <div
+          class="invisible absolute left-1/2 top-full z-50 min-w-[240px] -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100"
+        >
+          <div class="border border-[#eee] bg-white py-2 shadow-[0_12px_30px_rgba(0,0,0,0.08)]">
+            {
+              blogCategories.map((link) => (
+                <a
+                  href={link.href}
+                  class="block px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#333] hover:bg-[#fafafa] hover:text-brand"
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <a href="/our-guarantees/" class:list={[navClass, isActive('/our-guarantees') && 'text-brand']}>
+        Guarantees
+      </a>
+      <a href="/contact/" class:list={[navClass, isActive('/contact') && 'text-brand']}>Contact Us</a>
+    </nav>
+
+    <div class="flex items-center justify-end">
+      <a
+        href={site.phoneHref}
+        class="hidden h-[46px] items-center gap-2 bg-brand px-4 text-[12px] font-bold uppercase tracking-[0.1em] text-white transition hover:bg-brand-dark xl:px-5 xl:text-[13px] lg:inline-flex"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+        </svg>
+        Call {site.phoneDisplay}
+      </a>
+
+      <details class="relative lg:hidden">
+        <summary
+          class="list-none cursor-pointer border border-[#ddd] px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em]"
+        >
+          Menu
+        </summary>
+        <div
+          class="absolute right-0 mt-2 max-h-[75vh] w-72 overflow-y-auto border border-[#eee] bg-white p-3 shadow-xl"
+        >
+          <a href="/" class="block px-2 py-2 text-sm font-semibold uppercase tracking-wide">Home</a>
+          <a href="/about/" class="block px-2 py-2 text-sm font-semibold uppercase tracking-wide">About</a>
+          <p class="mt-2 border-t border-[#eee] pt-2 text-xs font-semibold uppercase text-brand">Services</p>
+          {
+            serviceLinks.map((link) => (
+              <a href={link.href} class="block px-2 py-2 text-xs uppercase tracking-wide text-[#666]">
+                {link.label}
+              </a>
+            ))
+          }
+          <a href="/portfolio/" class="mt-2 block border-t border-[#eee] pt-2 text-sm font-semibold uppercase">
+            Portfolio
+          </a>
+          <a href="/blog/" class="block px-2 py-2 text-sm font-semibold uppercase">Blog</a>
+          <a href="/our-guarantees/" class="block px-2 py-2 text-sm font-semibold uppercase">Guarantees</a>
+          <a href="/contact/" class="block px-2 py-2 text-sm font-semibold uppercase">Contact Us</a>
+          <a href={site.phoneHref} class="mt-3 flex h-12 items-center justify-center bg-brand text-xs font-bold uppercase tracking-widest text-white">
+            Call {site.phoneDisplay}
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

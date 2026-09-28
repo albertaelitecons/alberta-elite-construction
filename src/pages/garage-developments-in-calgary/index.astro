@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'How much does it cost to build a garage in Calgary?',
+    answer:
+      'Garage construction costs in Calgary vary depending on size, design, materials, and site conditions. A basic single garage may start from the low $20,000s, while larger double or custom garages can cost significantly more. We provide detailed quotes based on your property and goals.',
+  },
+  {
+    question: 'Do I need a permit to build a garage in Calgary?',
+    answer:
+      'Yes, most new garage construction projects in Calgary require permits and must comply with local zoning and building regulations. Our team handles permit applications and approvals for you.',
+  },
+  {
+    question: 'How long does it take to build a new garage?',
+    answer:
+      'Most garage projects take several weeks depending on weather, complexity, permits, and custom features. We provide clear timelines before work begins.',
+  },
+  {
+    question: 'Do you build heated or insulated garages?',
+    answer:
+      'Yes. We can include insulation, upgraded wall systems, vapour barrier solutions, and heating-ready designs, popular in Calgary for winter comfort and vehicle protection.',
+  },
+];
+---
+
+<BaseLayout
+  path="/garage-developments-in-calgary/"
+  title={`Custom Garages | ${site.name} | Calgary`}
+  description="Garage builders in Calgary for custom detached garages, packages, and full-service garage development."
+  ogImage="/images/hero/hero-garage.jpg"
+>
+  <PageHero
+    kicker="Garage development"
+    title="Garage Developments in Calgary"
+    subtitle="Elite services to build custom garages to fit your lifestyle."
+    image="/images/hero/hero-garage.jpg"
+  />
+
+  <PageIntro kicker="Garage builders" title="Built for Alberta weather">
+    <p class="k-lead">
+      From the ground up, we provide professional garage construction in Calgary for homeowners who
+      want a garage that lasts. We handle design, permits, and full-scale construction.
+    </p>
+    <p class="k-lead">
+      We understand Alberta's climate, from frost-depth foundations and drainage to materials that
+      withstand extreme temperature changes.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="Finished interiors"
+    title="Built for more than parking"
+    image="/images/services/garage.jpg"
+    imageAlt="Finished Calgary garage with storage, lighting, and a coated floor"
+    media="start"
+  >
+    <p>
+      A Calgary garage can hold vehicles, a shop, and storage if the slab, insulation, and electrical
+      are planned together. We finish the interior so the building works in January as well as July.
+    </p>
+  </PageSplit>
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Packages</p>
+      <h2 class="k-why-title">Garage packages</h2>
+      <div class="k-price-cards">
+        <article class="k-info-card">
+          <h3>Single Car Garage</h3>
+          <p>Perfect for compact spaces with room for one vehicle.</p>
+          <ul>
+            <li>Single car concrete slab</li>
+            <li>Framing, window, door and opener</li>
+            <li>Shingle roofing, soffits and gutters</li>
+            <li>Electrical panel and LED lighting</li>
+            <li>Vinyl siding</li>
+          </ul>
+          <a href="/contact/" class="k-pill k-pill-solid">Get a free quote</a>
+        </article>
+        <article class="k-info-card">
+          <h3>Double Car Garage</h3>
+          <p>The classic two-car garage with optional storage space.</p>
+          <ul>
+            <li>Double car concrete slab</li>
+            <li>Framing, windows, doors and openers</li>
+            <li>Shingle roofing and ventilation</li>
+            <li>Man door, electrical and LED lighting</li>
+            <li>Vinyl siding</li>
+          </ul>
+          <a href="/contact/" class="k-pill k-pill-solid">Get a free quote</a>
+        </article>
+        <article class="k-info-card">
+          <h3>Triple Car Garage</h3>
+          <p>Maximum storage and vehicle capacity.</p>
+          <ul>
+            <li>Triple car concrete slab</li>
+            <li>Double garage doors and openers</li>
+            <li>Full roofing and exterior package</li>
+            <li>Electrical, lighting and man door</li>
+            <li>Vinyl siding</li>
+          </ul>
+          <a href="/contact/" class="k-pill k-pill-solid">Get a free quote</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <PricingSection
+    subtitle="Starting prices for popular garage sizes"
+    lead="Garage construction costs vary with size, design, materials, and site conditions. These package starting prices give you a clear range before a free, no-obligation quote."
+    heading="Transparent starting prices for Calgary garages"
+    image="/images/services/garage.jpg"
+    imageAlt="Custom garage construction in Calgary"
+    items={[
+      { title: '14x20 single car garage', price: 'From $20,800 CAD' },
+      { title: '20x20 double garage', price: 'From $25,300 CAD' },
+      { title: '22x22 average double garage', price: 'From $30,500 CAD' },
+      { title: '24x24 large double garage', price: 'From $34,900 CAD' },
+      { title: '30x24 triple garage', price: 'From $48,600 CAD' },
+      { title: 'Fully custom garage', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary garage project runs"
+    steps={[
+      {
+        title: 'Site visit',
+        text: 'We measure the lot, check access, and talk through size, heating, and how you will use the garage.',
+        detail: 'Grade, frost, and existing utilities are recorded before we write a package price.',
+      },
+      {
+        title: 'Permits',
+        text: 'We prepare drawings and file City of Calgary applications so the build can start on a clear date.',
+        detail: 'You see what is included in the permit set and which inspections to expect.',
+      },
+      {
+        title: 'Construction',
+        text: 'Slab, framing, roofing, siding, electrical, and doors follow one schedule from our crew.',
+        detail: 'Weather holds are communicated early so you always know the next site day.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We test the opener, review the finish, and close leftover items before handover.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Garage Building FAQs" items={faqs} />
+  <ContactCTA>
+    Planning a custom garage in Calgary? Request a free consultation and detailed quote.
+  </ContactCTA>
+</BaseLayout>

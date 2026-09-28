@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import BlogSidebar from '../../../components/BlogSidebar.astro';
+import BlogPostList from '../../../components/BlogPostList.astro';
+import { site } from '../../../data/site';
+import { postsByCategory } from '../../../data/blog';
+---
+
+<BaseLayout
+  path="/blog/fence-installation/"
+  title={`Fence Installation in Alberta | ${site.name}`}
+  description="Expert advice on durable fences for Alberta homeowners."
+>
+  <PageHero
+    kicker="Journal"
+    title="Fence installation blog"
+    subtitle="Expert advice on durable fences for Alberta homeowners."
+    image="/images/services/fence.jpg"
+  />
+
+  <section class="k-page-section">
+    <div class="k-blog-layout">
+      <BlogPostList posts={postsByCategory('fence-installation')} />
+      <BlogSidebar active="fence-installation" />
+    </div>
+  </section>
+</BaseLayout>

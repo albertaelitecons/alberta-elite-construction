@@ -1,0 +1,27 @@
+---
+export type FAQItem = { question: string; answer: string };
+
+interface Props {
+  title?: string;
+  items: FAQItem[];
+}
+
+const { title = 'Frequently Asked Questions', items } = Astro.props;
+---
+
+<section class="k-faq">
+  <div class="k-wrap">
+    <p class="k-kicker k-kicker-dark">FAQ</p>
+    <h2>{title}</h2>
+    <div class="k-faq-list">
+      {
+        items.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

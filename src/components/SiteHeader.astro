@@ -1,0 +1,117 @@
+---
+import { site, serviceLinks, blogCategories } from '../data/site';
+import { locationLinks } from '../data/locations';
+
+interface Props {
+  currentPath: string;
+  overlay?: boolean;
+}
+
+const { currentPath, overlay = false } = Astro.props;
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/' || currentPath === '';
+  return currentPath.startsWith(href.replace(/\/$/, ''));
+};
+---
+
+<div class:list={['site-chrome', overlay && 'is-overlay']}>
+  <div class="site-topbar">
+    <div class="site-chrome-inner">
+      <ul class="site-topbar-list">
+        <li>
+          <a href={site.phoneHref} data-astro-prefetch="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5 3 3.9 3.4 3.5 4 3.5H7c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z" /></svg>
+            {site.phoneDisplay}
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`} data-astro-prefetch="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z" /></svg>
+            {site.email}
+          </a>
+        </li>
+        <li>
+          <span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 11h-4V7h2v4h2v2z" /></svg>
+            {site.hours.display}
+          </span>
+        </li>
+      </ul>
+      <a class="site-topbar-map" href={site.mapUrl} target="_blank" rel="noopener noreferrer" data-astro-prefetch="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
+        {site.address.city}, {site.address.region}
+      </a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="site-chrome-inner site-header-inner">
+      <a class="site-logo" href="/" data-astro-prefetch="viewport">
+        <img
+          src={overlay ? '/logo-white.png' : '/logo.png'}
+          alt={site.name}
+          width="282"
+          height="265"
+        />
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/" data-astro-prefetch="viewport" class:list={[isActive('/') && 'is-active']}>Home</a>
+        <a href="/about/" data-astro-prefetch="viewport" class:list={[isActive('/about') && 'is-active']}>About</a>
+        <div class="site-nav-drop">
+          <a
+            href="/services/"
+            data-astro-prefetch="viewport"
+            class:list={[(isActive('/services') || serviceLinks.some((l) => isActive(l.href))) && 'is-active']}
+          >
+            Services
+          </a>
+          <div class="site-nav-menu">
+            <div class="site-nav-menu-scroll">
+              {serviceLinks.map((link) => <a href={link.href} data-astro-prefetch="hover">{link.label}</a>)}
+            </div>
+          </div>
+        </div>
+        <div class="site-nav-drop">
+          <a href="/locations/" data-astro-prefetch="viewport" class:list={[isActive('/locations') && 'is-active']}>Locations</a>
+          <div class="site-nav-menu">
+            <div class="site-nav-menu-scroll">
+              {locationLinks.map((place) => <a href={place.href} data-astro-prefetch="hover">{place.name}</a>)}
+            </div>
+          </div>
+        </div>
+        <a href="/portfolio/" data-astro-prefetch="viewport" class:list={[isActive('/portfolio') && 'is-active']}>Portfolio</a>
+        <div class="site-nav-drop">
+          <a href="/blog/" data-astro-prefetch="viewport" class:list={[currentPath.startsWith('/blog') && 'is-active']}>Blog</a>
+          <div class="site-nav-menu">
+            <div class="site-nav-menu-scroll">
+              {blogCategories.map((link) => <a href={link.href} data-astro-prefetch="hover">{link.label}</a>)}
+            </div>
+          </div>
+        </div>
+        <a href="/contact/" data-astro-prefetch="viewport" class:list={[isActive('/contact') && 'is-active']}>Contact</a>
+      </nav>
+
+      <a class="site-quote" href={site.phoneHref} data-astro-prefetch="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.5 3 3.9 3.4 3.5 4 3.5H7c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z" /></svg>
+        Call now
+      </a>
+
+      <details class="site-mobile">
+        <summary>Menu</summary>
+        <div class="site-mobile-panel">
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+          <a href="/services/">Services</a>
+          {serviceLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+          <a href="/locations/">Locations</a>
+          {locationLinks.map((place) => <a href={place.href}>{place.name}</a>)}
+          <a href="/portfolio/">Portfolio</a>
+          <a href="/blog/">Blog</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </details>
+    </div>
+  </header>
+</div>

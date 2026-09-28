@@ -1,0 +1,63 @@
+---
+export type PriceItem = {
+  title: string;
+  price: string;
+};
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  lead?: string;
+  heading?: string;
+  image?: string;
+  imageAlt?: string;
+  items?: PriceItem[];
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+
+const defaultItems: PriceItem[] = [
+  { title: 'Single Car Garage (14x20)', price: 'From $20,800 CAD' },
+  { title: '22x22 Average Double Garage', price: 'From $30,500 CAD' },
+  { title: 'Basic Finish (open layout, LVP flooring, pot lights)', price: 'From CA$45-65 / sq ft' },
+  { title: 'Mid-Range Finish (bedroom, full bathroom, wet bar)', price: 'From CA$65-95 / sq ft' },
+  { title: 'Pressure-Treated Wood Decking', price: 'CA$30-55 / sq ft' },
+  { title: 'Composite Decking', price: 'CA$50-95 / sq ft' },
+];
+
+const {
+  title = 'Pricing Guide',
+  subtitle = 'Popular Projects Across Calgary',
+  lead = 'Every project is unique, and final pricing depends on size, materials, site conditions, and design choices. Below are typical starting prices for our most popular garage, deck, and basement projects - giving you a clear starting point before your free, no-obligation quote.',
+  heading = 'Transparent Starting Prices for Our Most Requested Services',
+  image = '/images/hero/hero-living-room.jpg',
+  imageAlt = 'Dark luxury living room renovation',
+  items = defaultItems,
+  ctaHref = '/contact/',
+  ctaLabel = 'Book an appointment',
+} = Astro.props;
+---
+
+<section class="k-pricing">
+  <div class="k-pricing-media">
+    <img src={image} alt={imageAlt} />
+  </div>
+  <div class="k-pricing-copy">
+    <h2>{title}</h2>
+    <p class="k-pricing-sub">{subtitle}</p>
+    <p class="k-pricing-lead">{lead}</p>
+    <h3>{heading}</h3>
+    <ul class="k-price-list">
+      {
+        items.map((item) => (
+          <li>
+            <span>{item.title}</span>
+            <i></i>
+            <b>{item.price}</b>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="k-pill k-pill-solid" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</section>

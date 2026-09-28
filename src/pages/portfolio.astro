@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  path="/portfolio/"
+  title={`Portfolio | ${site.title}`}
+  description="View basement development, kitchen remodeling, interior renovations, and exterior construction projects by Alberta Elite Construction in Calgary."
+  ogImage="/images/portfolio/IMG_3910-ef2d8266-04f7-4663-9759-87fdc5065512.jpg"
+>
+  <PageHero
+    kicker="Our work"
+    title="Project"
+    accent="Portfolio"
+    subtitle="In-progress and completed Calgary projects, kitchens, basements, decks, and more."
+    image="/images/hero/hero-living-room.jpg"
+  />
+  <PortfolioGrid />
+  <ContactCTA>
+    <span slot="title">Want this finish in your home?</span>
+    Tell us about the room, the deck, or the build. We will walk the site and send a free,
+    no-obligation quote.
+  </ContactCTA>
+</BaseLayout>

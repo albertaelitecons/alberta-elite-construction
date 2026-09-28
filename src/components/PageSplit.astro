@@ -1,0 +1,54 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  image: string;
+  imageAlt?: string;
+  media?: 'start' | 'end';
+  href?: string;
+  cta?: string;
+  objectPosition?: string;
+}
+
+const {
+  kicker,
+  title,
+  image,
+  imageAlt = '',
+  media = 'end',
+  href,
+  cta,
+  objectPosition,
+} = Astro.props;
+const imageFirst = media === 'start';
+const mediaStyle = objectPosition ? `object-position: ${objectPosition}` : undefined;
+---
+
+<section class:list={[imageFirst ? 'k-elegance' : 'k-philosophy']}>
+  {
+    imageFirst && (
+      <div class="k-elegance-media">
+        <img src={image} alt={imageAlt} loading="lazy" style={mediaStyle} />
+      </div>
+    )
+  }
+  <div class:list={[imageFirst ? 'k-elegance-copy' : 'k-philosophy-copy']}>
+    {kicker && <p class="k-kicker">{kicker}</p>}
+    <h2>{title}</h2>
+    <slot />
+    {
+      href && cta && (
+        <a class="k-pill k-pill-solid" href={href}>
+          {cta}
+        </a>
+      )
+    }
+  </div>
+  {
+    !imageFirst && (
+      <div class="k-philosophy-media">
+        <img src={image} alt={imageAlt} loading="lazy" style={mediaStyle} />
+      </div>
+    )
+  }
+</section>

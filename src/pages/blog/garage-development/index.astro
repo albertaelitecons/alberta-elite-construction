@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import BlogSidebar from '../../../components/BlogSidebar.astro';
+import BlogPostList from '../../../components/BlogPostList.astro';
+import { site } from '../../../data/site';
+import { postsByCategory } from '../../../data/blog';
+---
+
+<BaseLayout
+  path="/blog/garage-development/"
+  title={`Garage Development Tips | ${site.name}`}
+  description="Expert advice on new builds, heated garages, and workshops for Calgary homes."
+>
+  <PageHero
+    kicker="Journal"
+    title="Garage development blog"
+    subtitle="Expert advice on new builds, heated garages, and workshops for Calgary homes."
+    image="/images/hero/hero-garage.jpg"
+  />
+
+  <section class="k-page-section">
+    <div class="k-blog-layout">
+      <BlogPostList posts={postsByCategory('garage-development')} />
+      <BlogSidebar active="garage-development" />
+    </div>
+  </section>
+</BaseLayout>

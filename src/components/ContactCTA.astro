@@ -1,0 +1,20 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="k-closer">
+  <img src="/images/hero/promo-kitchen-bw.jpg" alt="" />
+  <div class="k-closer-copy">
+    <p class="k-kicker">Get in touch</p>
+    <h2>
+      <slot name="title">Request a free consultation</slot>
+    </h2>
+    <p class="k-promo-lead">
+      <slot>
+        Contact Alberta Elite Construction today for a clear written quote and dependable workmanship.
+      </slot>
+    </p>
+    <a class="k-pill k-pill-solid" href="/contact/">Contact us now</a>
+    <a class="k-pill" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+  </div>
+</section>

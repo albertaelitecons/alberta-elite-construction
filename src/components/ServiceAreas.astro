@@ -1,0 +1,22 @@
+---
+import { locationLinks } from '../data/locations';
+---
+
+<section class="k-why">
+  <div class="k-wrap">
+    <p class="k-kicker k-kicker-dark">Locations</p>
+    <h2 class="k-why-title">Services across Calgary and surrounding areas</h2>
+    <p class="k-works-lead">
+      We work with homeowners throughout Calgary and nearby Alberta communities.
+    </p>
+    <ul class="k-locations-grid">
+      {
+        locationLinks.map((place) => (
+          <li>
+            <a href={place.href}>{place.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

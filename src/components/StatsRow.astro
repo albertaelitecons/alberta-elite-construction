@@ -1,0 +1,27 @@
+---
+interface Props {
+  items?: { value: string; label: string }[];
+}
+
+const {
+  items = [
+    { value: '15+', label: 'Years experience' },
+    { value: '20', label: 'Mile service radius' },
+    { value: '1,000+', label: 'Satisfied customers' },
+    { value: '2-yr', label: 'Workmanship warranty' },
+  ],
+} = Astro.props;
+---
+
+<section class="k-stats">
+  <div class="k-wrap k-stats-row">
+    {
+      items.map((item) => (
+        <div>
+          <strong>{item.value}</strong>
+          <span>{item.label}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>

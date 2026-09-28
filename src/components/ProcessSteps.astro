@@ -1,0 +1,39 @@
+---
+export type ProcessStep = {
+  title: string;
+  text: string;
+  detail?: string;
+};
+
+interface Props {
+  kicker?: string;
+  title: string;
+  steps: ProcessStep[];
+}
+
+const { kicker = 'Process', title, steps } = Astro.props;
+---
+
+<section class="k-process">
+  <div class="k-wrap">
+    <p class="k-kicker k-kicker-dark">{kicker}</p>
+    <h2 class="k-why-title">{title}</h2>
+    <div class="k-process-steps">
+      <div class="k-process-bar" aria-hidden="true"></div>
+      <ol class="k-process-track">
+        {
+          steps.map((item, index) => (
+            <li>
+              <div class="k-process-marker">
+                <span>{index + 1}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              {item.detail && <p>{item.detail}</p>}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

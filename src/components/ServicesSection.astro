@@ -1,0 +1,168 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  kicker?: string;
+  title?: string;
+  follow?: boolean;
+}
+
+const {
+  kicker = 'Our services',
+  title = 'Built for every space in your home',
+  follow = false,
+} = Astro.props;
+
+const services = [
+  {
+    title: 'Kitchen Remodeling',
+    href: '/kitchen-remodeling-in-calgary/',
+    image: '/images/services/kitchen.jpg',
+  },
+  {
+    title: 'Bathroom Remodeling',
+    href: '/bathroom-remodeling-in-calgary/',
+    image: '/images/services/bathroom.jpg',
+  },
+  {
+    title: 'Basement Development',
+    href: '/basement-development-in-calgary/',
+    image: '/images/services/basement.jpg',
+  },
+  {
+    title: 'Home Remodeling',
+    href: '/home-remodeling-in-calgary/',
+    image: '/images/services/home.jpg',
+  },
+  {
+    title: 'Garage Development',
+    href: '/garage-developments-in-calgary/',
+    image: '/images/services/garage.jpg',
+  },
+  {
+    title: 'Deck Installation',
+    href: '/deck-installation-in-calgary/',
+    image: '/images/services/deck.jpg',
+  },
+  {
+    title: 'Fence Installation',
+    href: '/fence-installation-in-calgary/',
+    image: '/images/services/fence.jpg',
+  },
+  {
+    title: 'Video Surveillance Installation',
+    href: '/video-surveillance-installation-in-calgary/',
+    image: '/images/services/surveillance.jpg',
+  },
+  {
+    title: 'Roof Repair',
+    href: '/roof-repair-in-calgary/',
+    image: '/images/services/roof.jpg',
+  },
+];
+---
+
+<section class:list={['k-services', follow && 'is-follow']} aria-label="Services">
+  <div class="k-wrap">
+    <div class="k-services-head">
+      <p class="k-kicker">{kicker}</p>
+      <h2>{title}</h2>
+    </div>
+  </div>
+  <div class="k-carousel">
+    <button type="button" class="k-carousel-btn k-carousel-prev" aria-label="Previous services">‹</button>
+    <div class="k-carousel-viewport">
+      <div class="k-carousel-track">
+        {
+          [...services, ...services, ...services].map((item) => (
+            <article class="k-card">
+              <a href={item.href}>
+                <img src={item.image} alt={item.title} loading="lazy" />
+                <div class="k-card-shade"></div>
+                <h3>{item.title}</h3>
+                <span>Read more</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+    <button type="button" class="k-carousel-btn k-carousel-next" aria-label="Next services">›</button>
+  </div>
+  <div class="k-services-cta">
+    <a class="k-pill" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+  </div>
+</section>
+
+<script>
+  const carousel = document.querySelector('.k-services .k-carousel');
+  const track = document.querySelector<HTMLElement>('.k-services .k-carousel-track');
+  const prev = document.querySelector('.k-services .k-carousel-prev');
+  const next = document.querySelector('.k-services .k-carousel-next');
+
+  if (carousel && track) {
+    const cards = Array.from(track.querySelectorAll<HTMLElement>('.k-card'));
+    const originalCount = cards.length / 3;
+    const viewport = carousel.querySelector<HTMLElement>('.k-carousel-viewport');
+    let index = originalCount;
+    let animating = false;
+    let auto: ReturnType<typeof setInterval> | null = null;
+
+    const perView = () => {
+      const w = window.innerWidth;
+      if (w < 700) return 1;
+      if (w < 1100) return 2;
+      return 4;
+    };
+
+    const cardWidth = () => (viewport?.clientWidth ?? 0) / perView();
+
+    const layout = () => {
+      const width = cardWidth();
+      cards.forEach((card) => {
+        card.style.flex = `0 0 ${width}px`;
+      });
+    };
+
+    const goTo = (nextIndex: number, animate = true) => {
+      animating = true;
+      layout();
+      track.style.transition = animate ? 'transform 0.7s ease' : 'none';
+      track.style.transform = `translateX(-${nextIndex * cardWidth()}px)`;
+      index = nextIndex;
+
+      window.setTimeout(() => {
+        if (index >= originalCount * 2) {
+          goTo(originalCount + (index - originalCount * 2), false);
+        } else if (index < originalCount) {
+          goTo(originalCount + index, false);
+        } else {
+          animating = false;
+        }
+      }, animate ? 720 : 20);
+    };
+
+    const step = (dir: number) => {
+      if (animating) return;
+      goTo(index + dir);
+    };
+
+    const startAuto = () => {
+      if (auto) clearInterval(auto);
+      auto = setInterval(() => step(1), 4200);
+    };
+
+    prev?.addEventListener('click', () => {
+      step(-1);
+      startAuto();
+    });
+    next?.addEventListener('click', () => {
+      step(1);
+      startAuto();
+    });
+
+    window.addEventListener('resize', () => goTo(index, false));
+    goTo(index, false);
+    startAuto();
+  }
+</script>

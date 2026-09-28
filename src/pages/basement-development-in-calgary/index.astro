@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'How much does basement development cost in Calgary?',
+    answer:
+      'Costs typically range from $35 to $75+ per square foot depending on layout, bathrooms, kitchens, and legal suite requirements. Most projects fall between $25,000 and $45,000 for smaller basements; larger custom developments can exceed $100,000.',
+  },
+  {
+    question: 'Do I need a permit for basement development in Calgary?',
+    answer:
+      'Yes. Most basement development projects require City of Calgary building permits covering electrical, plumbing, insulation, and structural work. We manage the full permit process and inspections.',
+  },
+  {
+    question: 'What is the minimum ceiling height for a legal basement suite in Calgary?',
+    answer:
+      'Habitable rooms generally require a minimum ceiling height of 1.95 m (about 6 ft 5 in). If your basement does not meet this, underpinning or bench footing may be required.',
+  },
+  {
+    question: 'Do I need an egress window in my basement in Calgary?',
+    answer:
+      'Yes. Alberta Building Code requires at least one egress window in each basement bedroom with minimum open area and dimension requirements for emergency exit.',
+  },
+];
+---
+
+<BaseLayout
+  path="/basement-development-in-calgary/"
+  title={`Basement Development Calgary | Licensed Contractors | ${site.name}`}
+  description="Full-service basement renovation contractors in Calgary - permits, framing, finishing, and legal suites."
+  ogImage="/images/hero/hero-basement.jpg"
+>
+  <PageHero
+    kicker="Basement development"
+    title="Basement Development in Calgary"
+    subtitle="Elite services to transform your basement into a functional space."
+    image="/images/hero/hero-basement.jpg"
+  />
+
+  <PageIntro kicker="Full service" title="From concrete to finished rooms">
+    <p class="k-lead">
+      Whether you are starting with an unfinished concrete basement or updating an outdated lower
+      level, we provide complete basement renovation and development for Calgary homeowners.
+    </p>
+    <p class="k-lead">
+      Construction permits are required for safe, code-compliant projects. Our team obtains City of
+      Calgary building permits before construction begins.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="Finished living"
+    title="Finish the space you already own"
+    image="/images/services/basement.jpg"
+    imageAlt="Finished Calgary basement with living room, fireplace, and wet bar"
+    media="start"
+  >
+    <p>
+      An unfinished basement is square footage you already paid for. We frame, insulate, and finish
+      it into rooms you can actually use, from rec rooms and baths to a layout ready for a future
+      suite.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Included"
+    title="Basement renovation services"
+    columns={3}
+    items={[
+      { title: 'Planning and layout', text: 'Basement planning designed around how you live.' },
+      { title: 'Permits', text: 'Application assistance with the City of Calgary.' },
+      { title: 'Framing and drywall', text: 'Framing, insulation, and drywall installation.' },
+      { title: 'Mechanical trades', text: 'Electrical and plumbing coordination.' },
+      { title: 'Baths and wet bars', text: 'Basement bathrooms, kitchens, and wet bars.' },
+      { title: 'Legal suites', text: 'Secondary suite development built to code.' },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="How much does basement development cost?"
+    lead="Costs depend on layout, bathrooms, kitchens, and legal suite requirements. These per-square-foot ranges are typical starting prices before a free, no-obligation quote."
+    heading="Transparent starting prices for Calgary basements"
+    image="/images/services/basement.jpg"
+    imageAlt="Finished basement development in Calgary"
+    items={[
+      { title: 'Basic finish (open layout, LVP, pot lights)', price: 'From CA$45 to $65 / sq ft' },
+      { title: 'Mid-range finish (bedroom, bath, wet bar)', price: 'From CA$65 to $95 / sq ft' },
+      { title: 'Premium finish (kitchen, entrance, fire-rated)', price: 'From CA$95 to $150+ / sq ft' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary basement project runs"
+    steps={[
+      {
+        title: 'Consultation',
+        text: 'We walk the lower level, check ceiling height, moisture, and how you want the rooms to work.',
+        detail: 'Egress, bathrooms, and legal-suite questions are flagged at this visit.',
+      },
+      {
+        title: 'Design',
+        text: 'You get a layout and finish plan that fits the house, not a generic basement package.',
+        detail: 'Material choices and lighting are locked in before we apply for permits.',
+      },
+      {
+        title: 'Permits',
+        text: 'We file City of Calgary applications and schedule the inspections the job will need.',
+        detail: 'You receive a clear note on what the inspector will look at and when.',
+      },
+      {
+        title: 'Build and finish',
+        text: 'Framing, insulation, drywall, trades, and flooring run as one sequence to a finished lower level.',
+        detail: 'We walk the rooms with you and close leftover items before final payment.',
+      },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Frequently Asked Questions About Basement Development in Calgary" items={faqs} />
+  <ContactCTA>
+    Contact us today to schedule a free consultation and begin your basement renovation.
+  </ContactCTA>
+</BaseLayout>

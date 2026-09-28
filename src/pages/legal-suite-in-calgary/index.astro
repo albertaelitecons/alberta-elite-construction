@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'What exactly makes a basement suite "legal" in Calgary?',
+    answer:
+      'A suite is legal once it meets City of Calgary building and safety codes, is permitted through the correct process, and is registered with the City, including egress, fire separation, ventilation, and approved electrical and plumbing.',
+  },
+  {
+    question: 'Does Alberta Elite Construction handle the permits?',
+    answer:
+      'We manage the permitting process, from development and building permits through electrical, plumbing, and gas permits.',
+  },
+  {
+    question: 'How much does a legal secondary suite typically cost in Calgary?',
+    answer:
+      'Most projects run between roughly $60,000 and $130,000 depending on ceiling height, separate entrance requirements, and mechanical work. We provide a fixed-price quote after an on-site assessment.',
+  },
+  {
+    question: 'Do you help with the City of Calgary Secondary Suite Incentive Program?',
+    answer:
+      'Yes. We structure schedules and documentation around program requirements so clients can assemble invoices and inspection records efficiently.',
+  },
+];
+---
+
+<BaseLayout
+  path="/legal-suite-in-calgary/"
+  title={`Legal Suites in Calgary | ${site.name}`}
+  description="Legal basement and garage suites in Calgary - code-compliant secondary suite development."
+  ogImage="/images/hero/elegance-basement.jpg"
+>
+  <PageHero
+    kicker="Legal suites"
+    title="Legal Suite in Calgary"
+    subtitle="Develop a code-compliant secondary suite, basement or garage, built for Calgary regulations."
+    image="/images/hero/elegance-basement.jpg"
+  />
+
+  <PageIntro kicker="Garage suites" title="A suite above or beside the garage">
+    <p class="k-lead">
+      A garage legal suite offers rental income, a private home office, or a guest suite. We design
+      and construct stylish, functional garage suites tailored to your goals.
+    </p>
+  </PageIntro>
+
+  <FeatureGrid
+    kicker="Advantages"
+    title="Why homeowners add a legal suite"
+    items={[
+      { title: 'Property value', text: 'Increased value with a permitted secondary suite.' },
+      { title: 'Rental income', text: 'A legal suite can generate monthly income.' },
+      { title: 'Living space', text: 'More functional space for family or guests.' },
+      { title: 'Resale appeal', text: 'Buyers look for compliant, documented suites.' },
+    ]}
+  />
+
+  <PageSplit
+    kicker="Legal suites"
+    title="Permitted, registered, and livable"
+    image="/images/services/basement.jpg"
+    imageAlt="Finished legal suite in Calgary"
+    media="start"
+  >
+    <p>
+      A legal suite is a permitted secondary unit, in the basement or above the garage, built for
+      egress, fire separation, and City of Calgary registration. We design and construct the suite so
+      it can be rented, used by family, or sold with the paperwork in order.
+    </p>
+  </PageSplit>
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Why us</p>
+      <h2 class="k-why-title">Why build with us</h2>
+      <div class="k-guarantee-grid is-2">
+        <article class="k-info-card">
+          <h3>Expert craftsmanship</h3>
+          <p>Skilled professionals delivering top-quality construction on every suite.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Premium materials</h3>
+          <p>Durable materials specified for Calgary frost, moisture, and daily rental use.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Custom designs</h3>
+          <p>Personalized suites for rental income, guests, or family, not a one-size plan.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Code compliance</h3>
+          <p>Projects built to local building codes with a transparent permit and inspection process.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary legal suite project runs"
+    steps={[
+      {
+        title: 'Code review',
+        text: 'We assess egress, ceiling height, fire separation, parking, and whether a garage or basement suite is the better fit.',
+        detail: 'Incentive program paperwork is discussed when it applies to your address.',
+      },
+      {
+        title: 'Permit set',
+        text: 'We prepare the drawings and file City of Calgary applications for the suite and the required trades.',
+        detail: 'You see the inspection list before construction starts.',
+      },
+      {
+        title: 'Build to code',
+        text: 'Framing, fire separation, mechanical, and finishes are built to the approved set, not a guess.',
+        detail: 'We keep you current as each inspection is booked and closed.',
+      },
+      {
+        title: 'Registration',
+        text: 'After final inspection we walk the suite with you and help you assemble records for registration.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Legal suites in Calgary"
+    lead="Most legal suite projects depend on ceiling height, a separate entrance, and mechanical work. These ranges are a starting point before an on-site assessment and fixed-price quote."
+    heading="Transparent starting prices for Calgary legal suites"
+    image="/images/hero/hero-basement.jpg"
+    imageAlt="Finished basement suite living space in Calgary"
+    items={[
+      { title: 'Typical basement legal suite', price: 'From $60,000' },
+      { title: 'Complex suite with entrance work', price: 'From $130,000' },
+      { title: 'Garage legal suite', price: 'Quoted after a site visit' },
+      { title: 'Permit and registration package', price: 'Included in the written quote' },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Questions We Get Most" items={faqs} />
+  <ContactCTA>
+    Book a free consultation and start planning your legal secondary suite in Calgary.
+  </ContactCTA>
+</BaseLayout>

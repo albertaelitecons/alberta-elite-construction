@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'What is included in a whole-home remodel?',
+    answer:
+      'Home remodeling can include kitchens, bathrooms, flooring, drywall, lighting, trim, feature walls, stairs, and structural layout changes, coordinated under one general contractor.',
+  },
+  {
+    question: 'Should I remodel in phases or all at once?',
+    answer:
+      'Phasing can spread cost over time, but a unified plan often delivers better flow, fewer rework costs, and consistent finishes. We help you compare both approaches for your Calgary home.',
+  },
+  {
+    question: 'Do you handle permits for home remodeling projects?',
+    answer:
+      'Yes. When structural, electrical, or plumbing work requires City of Calgary permits, we manage applications and inspections as part of the project.',
+  },
+  {
+    question: 'Can we live in the home during remodeling?',
+    answer:
+      'Often yes, depending on scope. We contain dust, schedule noisy work thoughtfully, and communicate daily access needs throughout the renovation.',
+  },
+];
+---
+
+<BaseLayout
+  path="/home-remodeling-in-calgary/"
+  title={`Home Remodeling Calgary | General Contractor | ${site.name}`}
+  description="Home remodeling contractors in Calgary - kitchens, bathrooms, flooring, and whole-home renovations."
+  ogImage="/images/services/home.jpg"
+>
+  <PageHero
+    kicker="Home remodeling"
+    title="Home Remodeling in Calgary"
+    subtitle="Whole-home renovations planned as one cohesive project, not a patchwork of small jobs."
+    image="/images/services/home.jpg"
+  />
+
+  <PageIntro kicker="General contractor" title="One team, one plan">
+    <p class="k-lead">
+      Alberta Elite Construction is a Calgary general contractor for homeowners who want multiple
+      spaces updated with consistent quality, open concepts, new flooring, modern lighting, custom
+      millwork, and coordinated kitchen and bathroom remodeling.
+    </p>
+    <p class="k-lead">
+      When remodeling spans several rooms, sequencing matters. We align demolition, mechanical
+      rough-ins, and finishes so the transformation stays organized.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="Whole-home"
+    title="One renovation, one result"
+    image="/images/hero/hero-living-room.jpg"
+    imageAlt="Finished Calgary living room after a whole-home remodel"
+    media="start"
+  >
+    <p>
+      When several rooms change at once, the house needs one plan. We coordinate kitchens, baths,
+      flooring, and millwork so the remodel reads as a finished home, not a stack of separate jobs.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Included"
+    title="Home renovation services"
+    columns={3}
+    items={[
+      {
+        title: 'Kitchens and baths',
+        text: 'Kitchen and bathroom remodeling under one contract, so cabinets, tile, plumbing, and lighting stay on the same schedule. Layout, waterproofing, and finishes are planned together instead of as separate small jobs. You get one written scope and one crew accountable for both rooms.',
+      },
+      {
+        title: 'Basements',
+        text: 'Lower-level finishing and legal suite development from framing and insulation through drywall, bathrooms, and flooring. We check ceiling height, egress, and moisture before we write a price. City of Calgary permits are handled when the layout needs them.',
+      },
+      {
+        title: 'Interior finishes',
+        text: 'Flooring, trim, painting, and lighting installed so rooms feel like one house, not a patchwork of leftover materials. We sequence dusty work and finish coats around the spaces you still need to use. Hardware, baseboards, and paint sheen are locked in before the last rooms close.',
+      },
+      {
+        title: 'Feature walls',
+        text: 'Fireplaces, slat walls, and custom built-ins designed around the room you already have. We hide wiring, set the surround, and finish the millwork so the wall looks built-in, not applied. Materials are chosen for daily use and Calgary indoor heating.',
+      },
+      {
+        title: 'Finish carpentry',
+        text: 'Stairs, millwork, and tight interior details that make the renovation look complete. Treads, railings, casings, and closets are measured on site so gaps stay closed. This is the work people notice every time they walk through the house.',
+      },
+      {
+        title: 'Permits and trades',
+        text: 'Trade coordination and City of Calgary permits managed from the first visit. Electrical, plumbing, and structural items are flagged before demolition so the schedule stays honest. You have one point of contact when inspectors or trades need access.',
+      },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary home remodel runs"
+    steps={[
+      {
+        title: 'Walk the house',
+        text: 'We review every room in scope, how you live in the house, and what has to stay usable during construction.',
+        detail: 'Structural, electrical, and plumbing questions are flagged before we write a price.',
+      },
+      {
+        title: 'One written plan',
+        text: 'Kitchens, baths, flooring, and carpentry sit in a single scope so finishes match from room to room.',
+        detail: 'Phasing is available when you need to stay in the home, and it is priced in writing.',
+      },
+      {
+        title: 'Build in sequence',
+        text: 'Demolition, rough-in, and finishes are scheduled as one job with one point of contact.',
+        detail: 'We contain dust and tell you when rooms will be closed so daily life stays predictable.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We tour the finished rooms with you and complete leftover items before final payment.',
+        detail: 'Labour is backed by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Home remodeling in Calgary"
+    lead="Whole-home work is priced from the rooms in scope. These starting prices cover popular pieces of a larger remodel. A free consultation produces one written quote for the full job."
+    heading="Transparent starting prices for popular home projects"
+    image="/images/hero/hero-living-room.jpg"
+    imageAlt="Living room renovation in Calgary"
+    items={[
+      { title: 'Mid-range kitchen renovation', price: 'From $35,000' },
+      { title: 'Basic basement finish', price: 'From CA$45 to $65 / sq ft' },
+      { title: 'Bathroom remodel', price: 'Quoted after a site visit' },
+      { title: 'Whole-home renovation', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Home Remodeling FAQs" items={faqs} />
+  <ContactCTA>
+    Schedule a free consultation for your Calgary home remodeling project.
+  </ContactCTA>
+</BaseLayout>

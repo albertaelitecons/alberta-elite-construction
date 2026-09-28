@@ -1,0 +1,89 @@
+---
+import { site, serviceLinks, quickLinks } from '../data/site';
+import { locationLinks } from '../data/locations';
+import PreFooter from './PreFooter.astro';
+---
+
+<footer>
+  <PreFooter />
+  <div class="bg-surface-dark text-white/85">
+    <div class="section-pad mx-auto grid max-w-7xl gap-10 md:grid-cols-2 xl:grid-cols-5">
+      <div>
+        <img src="/logo-white.png" alt="" width="282" height="265" class="mb-5 h-auto w-[108px] object-contain" />
+        <p class="text-sm leading-relaxed text-white/70">
+          Alberta Elite Construction is your trusted partner for top-quality construction services in
+          Calgary and the surrounding area - built to last, crafted to impress.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mb-4 font-display text-lg font-bold uppercase tracking-wide text-white">Quick links</h2>
+        <ul class="grid grid-cols-1 gap-2 text-sm">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-white/70 transition hover:text-brand">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="mb-4 font-display text-lg font-bold uppercase tracking-wide text-white">
+          <a href="/services/" class="transition hover:text-brand">Services</a>
+        </h2>
+        <ul class="grid grid-cols-1 gap-2 text-sm">
+          {
+            serviceLinks.map((link) => (
+              <li>
+                <a href={link.href} class="text-white/70 transition hover:text-brand">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="mb-4 font-display text-lg font-bold uppercase tracking-wide text-white">Locations</h2>
+        <ul class="grid grid-cols-1 gap-2 text-sm">
+          {
+            locationLinks.map((place) => (
+              <li>
+                <a href={place.href} class="text-white/70 transition hover:text-brand">
+                  {place.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="mb-4 font-display text-lg font-bold uppercase tracking-wide text-white">
+          Get in touch
+        </h2>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>{site.address.full}</li>
+          <li>
+            <a href={site.phoneHref} class="hover:text-brand">{site.phoneDisplay}</a>
+          </li>
+          <li>
+            <a href={site.mapUrl} target="_blank" rel="noopener noreferrer" class="hover:text-brand">
+              Google Maps
+            </a>
+          </li>
+        </ul>
+        <a href="/contact/" class="btn-primary mt-6 inline-flex text-xs">GET A QUOTE</a>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 py-5 text-center text-xs uppercase tracking-widest text-white/50">
+      © {new Date().getFullYear()} {site.name}. All rights reserved.
+    </div>
+  </div>
+</footer>

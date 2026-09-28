@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import PageSplit from '../components/PageSplit.astro';
+import LocationsSection from '../components/LocationsSection.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site } from '../data/site';
+
+const services = [
+  {
+    title: 'Custom decking',
+    text: 'Composite, treated wood, cedar, and larch decks framed for Calgary frost, snow load, and sun. We handle footings, ledger flashing, railings, stairs, and stain or composite finishes that hold up through Alberta winters. Each build is planned for drainage, privacy, and how you use the yard year-round.',
+  },
+  {
+    title: 'Fence installation',
+    text: 'Wood, PVC, chain link, and wildlife fencing installed to the right post depth for frost. We set gates, hardware, and alignment so the fence stays straight through freeze and thaw. Property lines, grade changes, and neighbor access are checked before posts go in the ground.',
+  },
+  {
+    title: 'Legal suites',
+    text: 'Garage and basement suites built to Calgary code, including egress, fire separation, ventilation, sound control, and permit coordination. Designed for rental income, guests, or family, and registered the right way. We plan parking, entries, and utilities so the suite works as a real second home.',
+  },
+  {
+    title: 'Basement development',
+    text: 'Full lower-level finishing from framing and insulation to drywall, bathrooms, flooring, and lighting. We manage City of Calgary permits and moisture-conscious assemblies suited to Alberta homes. Rec rooms, bedrooms, and wet areas are laid out for ceiling height, egress, and everyday use.',
+  },
+  {
+    title: 'Custom garages',
+    text: 'Detached garage construction and complete packages, from slab and framing to roofing, siding, electrical, and openers. Heated and insulated options are available for Calgary winters. Workshops, extra storage, and suite-ready shells can be built into the same structure from day one.',
+  },
+  {
+    title: 'Home remodeling',
+    text: 'Kitchens, bathrooms, and whole-home renovations under one contractor. We coordinate trades, sequencing, and finishes so the house feels planned, not patched together. Cabinets, tile, electrical, and plumbing are scheduled as one job so you have a single point of contact.',
+  },
+  {
+    title: 'Video surveillance installation',
+    text: 'Security camera systems planned for coverage, wiring, and Calgary weather. We mount cameras, run cable, and set recording so you can see the property clearly. Layouts are based on entries, yards, and how you actually watch the house.',
+  },
+  {
+    title: 'Roof repair',
+    text: 'Leak tracing, shingle replacement, and flashing repairs built for freeze-thaw, wind, and ice. We find the source of the water, repair the assembly, and leave the roof weather-tight. Small patches and larger section repairs are quoted after we see the slope and access.',
+  },
+];
+
+const guarantees = [
+  {
+    title: '2-year workmanship warranty',
+    text: 'If a deficiency related to our labour is identified within two years, we return to correct it at no charge.',
+  },
+  {
+    title: 'Fixed written pricing',
+    text: 'The price you approve is the price you pay. Any change is written down before work proceeds.',
+  },
+  {
+    title: 'Code-compliant construction',
+    text: 'All work follows the Alberta Building Code and applicable City of Calgary permit requirements.',
+  },
+  {
+    title: 'Permit handling',
+    text: 'Where permits are required, we manage the application and coordinate required inspections.',
+  },
+  {
+    title: 'Licensed and insured',
+    text: 'We hold business licensing and liability insurance for residential contracting in Alberta.',
+  },
+  {
+    title: 'Final walk-through',
+    text: 'We walk the project with you and resolve outstanding items before final payment is collected.',
+  },
+];
+
+const process = [
+  {
+    title: 'Share the concern',
+    text: 'Send a written description of the issue, the project address, and photos where possible. Include when the work was completed and what has changed so we have a clear record from the first message.',
+    detail: 'A short note is enough to open the file. We reply with the next step and any extra photos or access details we need.',
+  },
+  {
+    title: 'We review the file',
+    text: 'We compare the request against your contract, warranty period, and the original scope so we know what is covered. You hear back with coverage notes and whether a site visit is required.',
+    detail: 'If something sits outside the warranty, we say so in writing and still outline a practical repair option if you want one.',
+  },
+  {
+    title: 'On-site inspection',
+    text: 'If we need to see the work in person, we schedule a visit, confirm the cause, and outline the repair plan with you. Findings, materials, and access are agreed before any repair starts.',
+    detail: 'You get a clear summary after the visit so there are no surprises on timing or what will be opened up.',
+  },
+  {
+    title: 'We make it right',
+    text: 'Covered repairs are booked within a reasonable timeframe and completed to the same workmanship standard as the original project. We confirm the result with you before the claim is closed.',
+    detail: 'Outstanding items are finished before final sign-off, and the repair is documented for your records.',
+  },
+];
+---
+
+<BaseLayout
+  path="/about/"
+  title={`About Us | ${site.name}`}
+  description="Alberta Elite Construction is your trusted Calgary partner for garages, basements, legal suites, decks, and fences."
+>
+  <PageHero
+    kicker="About us"
+    title="About Us"
+    subtitle="Alberta Elite Construction is your trusted partner for high-quality construction and renovation services in Calgary and the surrounding area. With years of experience in the industry, we specialize in creating custom solutions that transform your property into a functional, stylish, and valuable space."
+    image="/images/hero/hero-living-room.jpg"
+  />
+
+  <section class="k-about">
+    <div class="k-wrap k-about-grid">
+      <div class="k-years">
+        <strong>15+</strong>
+        <span>Years of experience</span>
+      </div>
+      <div class="k-about-mid">
+        <p class="k-kicker">Who we are</p>
+        <h2>Craftsmen, designers, and problem-solvers</h2>
+      </div>
+      <div class="k-about-copy">
+        <p class="k-lead">
+          At Alberta Elite Construction, we are more than just builders. Our team of skilled
+          professionals is passionate about delivering results that go beyond expectations. Whether
+          we are building a custom deck, constructing a legal suite, or installing a durable fence,
+          we take pride in our workmanship at every step.
+        </p>
+        <a class="k-pill k-pill-ghost" href="/contact/">Get a quote →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">What we do</p>
+      <h2 class="k-why-title">We do everything from garages and basements to decks and fences</h2>
+      <div class="k-why-grid is-3">
+        {
+          services.map((item, index) => (
+            <article>
+              <div class="k-step-head">
+                <div class="k-step-num" aria-hidden="true">
+                  {index + 1}
+                </div>
+                <h3>{item.title}</h3>
+              </div>
+              <p>{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <PageSplit
+    kicker="Our mission"
+    title="Built for our neighbors"
+    image="/images/hero/elegance-kitchen.jpg"
+    imageAlt="Kitchen remodeling completed by Alberta Elite Construction"
+    href="/portfolio/"
+    cta="Explore our work →"
+  >
+    <p>
+      Our mission is simple: to provide exceptional construction services to our neighbors. We
+      believe in building not just structures, but lasting relationships with our clients and local
+      community.
+    </p>
+    <p>
+      If you need construction services, we are here to bring your vision to life. Contact us today
+      to learn how we can help.
+    </p>
+  </PageSplit>
+
+  <section class="k-stats">
+    <div class="k-wrap k-stats-row">
+      <div>
+        <strong>15+</strong>
+        <span>Years experience</span>
+      </div>
+      <div>
+        <strong>20</strong>
+        <span>Mile service radius</span>
+      </div>
+      <div>
+        <strong>1,000+</strong>
+        <span>Satisfied customers</span>
+      </div>
+      <div>
+        <strong>2-yr</strong>
+        <span>Workmanship warranty</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Guarantees</p>
+      <h2 class="k-why-title">Clear commitments on every Calgary project</h2>
+      <div class="k-guarantee-grid">
+        {
+          guarantees.map((item) => (
+            <article class="k-info-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <PageSplit
+    kicker="Warranty"
+    title="What we guarantee by project"
+    image="/images/hero/philosophy-feature-wall.jpg"
+    imageAlt="Living room feature wall and fireplace after a Calgary remodel"
+    media="start"
+    href="/contact/"
+    cta="Book a meeting"
+  >
+    <p>
+      Basement work covers framing, insulation, drywall, electrical, plumbing, HVAC coordination,
+      flooring, and finishing included in the contracted scope.
+    </p>
+    <p>
+      Garage and legal suites include structural framing, roofing, fire separation, egress, and
+      systems built to Calgary permit requirements. Decks and fences are installed for frost depth,
+      alignment, and manufacturer specifications.
+    </p>
+  </PageSplit>
+
+  <section class="k-process">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Process</p>
+      <h2 class="k-why-title">How a warranty claim works</h2>
+      <div class="k-process-steps">
+      <div class="k-process-bar" aria-hidden="true"></div>
+      <ol class="k-process-track">
+        {
+          process.map((item, index) => (
+            <li>
+              <div class="k-process-marker">
+                <span>{index + 1}</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+              <p>{item.detail}</p>
+            </li>
+          ))
+        }
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <LocationsSection />
+
+  <ContactCTA>
+    Tell us about your Calgary project and we will send a clear written quote.
+  </ContactCTA>
+</BaseLayout>

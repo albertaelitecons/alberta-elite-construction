@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'How much does fence installation cost in Calgary?',
+    answer:
+      'Pricing depends on material, length, height, and site conditions like slope or old fence removal. Wood and PVC typically cost more per foot than chain link. Request a free on-site estimate for an accurate quote.',
+  },
+  {
+    question: 'Do I need a permit to install a fence in Calgary?',
+    answer:
+      'Most residential fences do not require a full building permit, but the City sets maximum height limits by yard location along with corner-lot sightline rules. We verify requirements for your property.',
+  },
+  {
+    question: "What's the best fence material for Calgary's climate?",
+    answer:
+      'Wood (especially cedar) offers a natural look with periodic maintenance. PVC/vinyl handles freeze-thaw with minimal upkeep. Chain link is budget-friendly and durable for security or pet containment.',
+  },
+];
+---
+
+<BaseLayout
+  path="/fence-installation-in-calgary/"
+  title={`Fence Installation Calgary | Wood, PVC & Chain Link | ${site.name}`}
+  description="Expert fence construction in Calgary - wood, PVC vinyl, chain link, and wildlife fencing."
+  ogImage="/images/services/fence.jpg"
+>
+  <PageHero
+    kicker="Fence installation"
+    title="Fence Installation in Calgary"
+    subtitle="Quality, durability, and style to fit your property."
+    image="/images/services/fence.jpg"
+  />
+
+  <PageIntro kicker="Why choose us" title="Fences built for frost and wind">
+    <p class="k-lead">
+      Licensed and insured fence projects in wood, PVC, and chain link, built for Alberta weather
+      and frost cycles by an in-house crew.
+    </p>
+    <p class="k-lead">
+      Every install includes a written workmanship guarantee and a free estimate after we see the
+      property.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="Property lines"
+    title="Privacy that stands through frost"
+    image="/images/services/fence.jpg"
+    imageAlt="Horizontal wood privacy fence installed along a Calgary yard"
+    media="start"
+  >
+    <p>
+      Posts go below frost, the line stays straight, and gates hang true. We install wood, PVC, and
+      chain link so the fence still looks like a finished project after the first Alberta winter.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Materials"
+    title="Fence styles we install"
+    items={[
+      { title: 'Wooden fences', text: 'Premium cedar and lumber for privacy, security, or decorative designs.' },
+      { title: 'PVC vinyl', text: 'A clean modern look with very little upkeep and matching gates.' },
+      { title: 'Chain link', text: 'Durable galvanized or coated steel for security and pet containment.' },
+      { title: 'Wildlife fencing', text: 'Protection for gardens and landscaping built for Calgary wildlife.' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary fence project runs"
+    steps={[
+      {
+        title: 'Property visit',
+        text: 'We walk the line, check grade, and confirm gates, height, and material before we quote.',
+        detail: 'Neighbour access and corner-lot sightlines are noted on the same visit.',
+      },
+      {
+        title: 'Written quote',
+        text: 'You receive a fixed price for posts, panels, and hardware, including old fence removal if needed.',
+        detail: 'City height rules for your yard are confirmed in writing.',
+      },
+      {
+        title: 'Install',
+        text: 'Posts go to frost depth, then rails, boards or mesh, and gates are set to stay straight through freeze and thaw.',
+        detail: 'We keep the yard as tidy as the work allows and update you if weather shifts the day.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We check alignment, latch hardware, and leftover items with you before the job is closed.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Fence installation in Calgary"
+    lead="Fence pricing depends on material, length, height, slope, and whether an old fence comes out. Wood and PVC typically cost more per foot than chain link. We write a fixed quote after we see the property."
+    heading="Transparent starting prices for Calgary fences"
+    image="/images/portfolio/deck-stained-fence.jpg"
+    imageAlt="Stained cedar deck enclosed by a wood privacy fence"
+    items={[
+      { title: 'Wood privacy fence', price: 'Quoted after a site visit' },
+      { title: 'PVC vinyl fence', price: 'Quoted after a site visit' },
+      { title: 'Chain link fence', price: 'Quoted after a site visit' },
+      { title: 'Wildlife fencing', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Frequently Asked Questions" items={faqs} />
+  <ContactCTA>
+    Tell us about your fence project for a clear, no-obligation quote, usually within one business day.
+  </ContactCTA>
+</BaseLayout>

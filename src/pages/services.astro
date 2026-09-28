@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import PricingSection from '../components/PricingSection.astro';
+import LocationsSection from '../components/LocationsSection.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  path="/services/"
+  title={`Services | ${site.title}`}
+  description="Garage, basement, kitchen, bathroom, deck, fence, roof repair, video surveillance, and home remodeling services from Alberta Elite Construction in Calgary."
+  ogImage="/images/services/kitchen.jpg"
+>
+  <PageHero
+    kicker="Our services"
+    title="Our"
+    accent="Services"
+    subtitle="One Calgary contractor for kitchens, basements, garages, decks, fences, roof repair, video surveillance, and full-home remodels."
+    image="/images/hero/hero-living-room.jpg"
+  />
+
+  <ServicesSection />
+  <PricingSection />
+  <LocationsSection />
+  <ContactCTA>
+    Tell us about your project and we will send a clear written quote.
+  </ContactCTA>
+</BaseLayout>

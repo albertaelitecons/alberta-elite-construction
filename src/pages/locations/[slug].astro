@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+import { locations, type LocationPage } from '../../data/locations';
+
+export function getStaticPaths() {
+  return locations.map((location) => ({
+    params: { slug: location.slug },
+    props: { location },
+  }));
+}
+
+interface Props {
+  location: LocationPage;
+}
+
+const { location } = Astro.props;
+const inCalgary = location.name.includes('Calgary');
+const titleBreak = location.title.lastIndexOf(' in ');
+const titleLead = titleBreak === -1 ? location.title : location.title.slice(0, titleBreak + 4).trimEnd();
+const titleRest = titleBreak === -1 ? undefined : location.title.slice(titleBreak + 4);
+---
+
+<BaseLayout
+  path={`/locations/${location.slug}/`}
+  title={`${location.title} | ${site.name}`}
+  description={`${location.subtitle} Call ${site.phoneDisplay}.`}
+>
+  <PageHero
+    kicker="Locations"
+    title={titleLead}
+    titleRest={titleRest}
+    subtitle={location.subtitle}
+    image="/images/hero/hero-living-room.jpg"
+  />
+
+  <section class="k-about">
+    <div class="k-wrap k-about-grid">
+      <div class="k-years">
+        <strong>15+</strong>
+        <span>Years of experience</span>
+      </div>
+      <div class="k-about-mid">
+        <p class="k-kicker">Local crew</p>
+        <h2>
+          {
+            inCalgary
+              ? `A Calgary contractor for ${location.name}`
+              : `A Calgary contractor serving ${location.name}`
+          }
+        </h2>
+      </div>
+      <div class="k-about-copy">
+        <p class="k-lead">{location.lead}</p>
+        <a class="k-pill k-pill-ghost" href="/contact/">Get a quote →</a>
+      </div>
+    </div>
+  </section>
+
+  <PageSplit
+    kicker="On your street"
+    title={`Built for ${location.name}`}
+    image="/images/hero/elegance-kitchen.jpg"
+    imageAlt="Kitchen remodeling completed by Alberta Elite Construction"
+    href="/contact/"
+    cta="Get a quote →"
+  >
+    <p>{location.body}</p>
+    <p>{location.focus}</p>
+  </PageSplit>
+
+  <ServicesSection kicker="Our services" follow />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title={`How a ${location.name} project runs`}
+    steps={[
+      {
+        title: 'Site visit',
+        text: `We come to your ${location.name} property, measure, and talk through how you use the space.`,
+        detail: 'Photos, access notes, and permit questions are recorded before we write a price.',
+      },
+      {
+        title: 'Written quote',
+        text: 'You receive a fixed scope and price. Changes are written down before extra work starts.',
+        detail: 'If a permit is required, we outline who files it and what inspections to expect.',
+      },
+      {
+        title: 'Build',
+        text: 'Our crew sequences trades, keeps the site organized, and updates you as the work moves.',
+        detail: 'Materials are specified for Calgary frost, wind, and freeze-thaw, even on jobs outside city limits.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We review the finished work with you and close outstanding items before final payment.',
+        detail: 'Covered labour is backed by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <LocationsSection />
+
+  <ContactCTA>
+    Tell us about your {location.name} project and we will send a clear written quote.
+  </ContactCTA>
+</BaseLayout>

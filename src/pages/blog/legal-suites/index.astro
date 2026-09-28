@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import BlogSidebar from '../../../components/BlogSidebar.astro';
+import BlogPostList from '../../../components/BlogPostList.astro';
+import { site } from '../../../data/site';
+import { postsByCategory } from '../../../data/blog';
+---
+
+<BaseLayout
+  path="/blog/legal-suites/"
+  title={`Legal Suites in Alberta | ${site.name} Blog`}
+  description="Legal secondary suites in Alberta: rules, permits, and practical guides."
+>
+  <PageHero
+    kicker="Journal"
+    title="Legal suites blog"
+    subtitle="Legal secondary suites in Alberta: a complete guide to compliance."
+    image="/images/hero/hero-basement.jpg"
+  />
+
+  <section class="k-page-section">
+    <div class="k-blog-layout">
+      <BlogPostList posts={postsByCategory('legal-suites')} />
+      <BlogSidebar active="legal-suites" />
+    </div>
+  </section>
+</BaseLayout>

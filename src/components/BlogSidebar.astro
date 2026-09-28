@@ -1,0 +1,28 @@
+---
+import { blogCategories } from '../data/site';
+
+interface Props {
+  active?: string;
+}
+
+const { active } = Astro.props;
+---
+
+<aside class="k-blog-sidebar">
+  <h2>Categories</h2>
+  <ul>
+    <li>
+      <a href="/blog/" class:list={[active === 'all' && 'is-active']}>All articles</a>
+    </li>
+    {
+      blogCategories.map((cat) => (
+        <li>
+          <a href={cat.href} class:list={[active === cat.slug && 'is-active']}>
+            {cat.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <a class="k-pill k-pill-solid" href="/contact/">Get an estimate</a>
+</aside>

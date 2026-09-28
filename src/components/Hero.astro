@@ -1,0 +1,163 @@
+---
+const slides = [
+  { image: '/images/hero/hero-living-room.jpg', alt: 'Luxury home interior renovation' },
+  { image: '/images/hero/hero-kitchen.jpg', alt: 'Kitchen remodeling project' },
+  { image: '/images/hero/hero-deck.jpg', alt: 'Deck construction in Calgary' },
+  { image: '/images/hero/hero-basement.jpg', alt: 'Basement development project' },
+];
+---
+
+<section class="hero-marize relative isolate min-h-[88vh] overflow-hidden bg-charcoal text-white" aria-label="Hero">
+  <div class="absolute inset-0">
+    {
+      slides.map((slide, index) => (
+        <div
+          class:list={['hero-slide', index === 0 && 'is-active is-initial']}
+          data-slide={index}
+        >
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            class="h-full w-full object-cover"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            decoding="async"
+          />
+          <div class="absolute inset-0 bg-black/40" />
+        </div>
+      ))
+    }
+  </div>
+
+  <button
+    type="button"
+    class="hero-prev absolute left-4 top-1/2 z-20 hidden -translate-y-1/2 border border-white/30 bg-black/20 p-3 text-white backdrop-blur transition hover:bg-brand md:left-8 md:flex"
+    aria-label="Previous slide"
+  >
+    ‹
+  </button>
+  <button
+    type="button"
+    class="hero-next absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 border border-white/30 bg-black/20 p-3 text-white backdrop-blur transition hover:bg-brand md:right-8 md:flex"
+    aria-label="Next slide"
+  >
+    ›
+  </button>
+
+  <div class="relative z-10 mx-auto flex min-h-[88vh] max-w-4xl flex-col items-center justify-center px-4 py-28 text-center md:px-6">
+    <h1 class="font-display text-3xl font-bold leading-[1.15] sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+      We do big things with new ideas
+    </h1>
+    <p class="mt-6 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
+      Alberta Elite Construction delivers garage development, basement finishing, kitchen and bathroom
+      remodeling, decks, and fences across Calgary - built to last, crafted to impress.
+    </p>
+    <p class="mt-3 max-w-xl text-sm text-white/70 md:text-base">
+      One trusted general contractor team from consultation through final walkthrough.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-0">
+      <a href="/about/" class="btn-primary min-w-[140px] px-8">Read more</a>
+      <a
+        href="/contact/"
+        class="inline-flex min-w-[140px] items-center justify-center border-2 border-white bg-transparent px-8 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white hover:text-ink"
+      >
+        Get started
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="hero-dots absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2"
+    role="tablist"
+    aria-label="Hero slides"
+  >
+    {
+      slides.map((_, index) => (
+        <button
+          type="button"
+          class:list={['hero-dot h-2.5 w-2.5 rounded-full transition', index === 0 && 'is-active']}
+          data-slide={index}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const INTERVAL_MS = 6500;
+  const INITIAL_FADE_MS = 2800;
+
+  function initHero() {
+    const root = document.querySelector('.hero-marize');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.hero-slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.hero-dot'));
+    const prev = root.querySelector<HTMLButtonElement>('.hero-prev');
+    const next = root.querySelector<HTMLButtonElement>('.hero-next');
+
+    if (slides.length === 0) return;
+
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    let initialDone = false;
+
+    const setSlide = (index: number) => {
+      const nextIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === nextIndex);
+        slide.classList.remove('is-initial');
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === nextIndex);
+        dot.setAttribute('aria-selected', i === nextIndex ? 'true' : 'false');
+      });
+      current = nextIndex;
+    };
+
+    const startAutoplay = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => setSlide(current + 1), INTERVAL_MS);
+    };
+
+    const stopAutoplay = () => {
+      if (timer) clearInterval(timer);
+      timer = null;
+    };
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.slide);
+        if (!Number.isNaN(idx)) {
+          setSlide(idx);
+          if (initialDone) startAutoplay();
+        }
+      });
+    });
+
+    prev?.addEventListener('click', () => {
+      setSlide(current - 1);
+      if (initialDone) startAutoplay();
+    });
+
+    next?.addEventListener('click', () => {
+      setSlide(current + 1);
+      if (initialDone) startAutoplay();
+    });
+
+    root.addEventListener('mouseenter', stopAutoplay);
+    root.addEventListener('mouseleave', () => {
+      if (initialDone) startAutoplay();
+    });
+
+    window.setTimeout(() => {
+      slides[0]?.classList.remove('is-initial');
+      initialDone = true;
+      startAutoplay();
+    }, INITIAL_FADE_MS);
+  }
+
+  initHero();
+  document.addEventListener('astro:page-load', initHero);
+</script>

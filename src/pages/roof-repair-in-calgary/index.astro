@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'How much does roof repair cost in Calgary?',
+    answer:
+      'Cost depends on the leak source, shingle type, flashing, and how much of the roof has to open. We quote after we see the slope, access, and damage.',
+  },
+  {
+    question: 'Do you repair leaks or replace whole roofs?',
+    answer:
+      'Most calls start as a targeted repair: flashing, shingles, valleys, or a localized leak. If the roof is at the end of its life, we say so in writing and quote the larger scope before work starts.',
+  },
+  {
+    question: 'Can you work through a Calgary winter?',
+    answer:
+      'Emergency leak stops can often proceed in cold weather. Larger shingle work is scheduled around freeze, thaw, and safe access. We tell you what can happen now and what should wait.',
+  },
+];
+---
+
+<BaseLayout
+  path="/roof-repair-in-calgary/"
+  title={`Roof Repair Calgary | ${site.name}`}
+  description="Roof repair in Calgary. Leak tracing, shingles, and flashing work built for Alberta freeze-thaw and wind."
+  ogImage="/images/hero/hero-roof.jpg"
+>
+  <PageHero
+    kicker="Roof repair"
+    title="Roof Repair in Calgary"
+    subtitle="Leak tracing, shingles, and flashing repairs built for Alberta weather."
+    image="/images/hero/hero-roof.jpg"
+  />
+
+  <PageIntro
+    kicker="Weather-tight"
+    title="Find the leak, then repair it"
+    figure="/images/services/roof-cutout.png"
+    figureAlt="Standalone Calgary home with a black shingle roof"
+  >
+    <p class="k-lead">
+      Alberta Elite Construction repairs roofs on Calgary homes when water is getting in, shingles
+      have lifted, or flashing has failed around chimneys, walls, and valleys.
+    </p>
+    <p class="k-lead">
+      We inspect from the attic and the slope, quote a defined repair, and rebuild the assembly so
+      it holds through freeze, thaw, and wind.
+    </p>
+  </PageIntro>
+
+  <FeatureGrid
+    kicker="Included"
+    title="Roof repair services"
+    items={[
+      { title: 'Leak tracing', text: 'Attic and exterior checks to find where water actually enters.' },
+      { title: 'Shingle repair', text: 'Damaged or missing shingles replaced to match the existing roof.' },
+      { title: 'Flashing', text: 'Chimney, wall, and valley flashing reset so water sheds correctly.' },
+      { title: 'Ice and wind damage', text: 'Repairs specified for Calgary freeze-thaw, ice, and high wind.' },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Roof repair in Calgary"
+    lead="Final pricing depends on slope, access, material, and how much of the roof has failed. These are typical starting points before a free inspection and written quote."
+    heading="Transparent starting prices for Calgary roof repairs"
+    image="/images/hero/elegance-renovation.jpg"
+    imageAlt="Calgary home exterior after construction work"
+    items={[
+      { title: 'Localized leak repair', price: 'Quoted after a site visit' },
+      { title: 'Flashing and valley repair', price: 'Quoted after a site visit' },
+      { title: 'Shingle section replacement', price: 'Quoted after a site visit' },
+      { title: 'Storm damage repair', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary roof repair runs"
+    steps={[
+      {
+        title: 'Inspect',
+        text: 'We check the attic, interior stains, and the roof surface to find the leak path.',
+        detail: 'Photos, access notes, and safety limits are recorded before we write a price.',
+      },
+      {
+        title: 'Written quote',
+        text: 'You approve a fixed scope for shingles, flashing, underlayment, and cleanup.',
+        detail: 'If a larger replacement is the honest recommendation, that is priced separately.',
+      },
+      {
+        title: 'Repair',
+        text: 'Damaged materials come off, the assembly is rebuilt, and the roof is made weather-tight.',
+        detail: 'We protect landscaping and keep you posted if weather shifts the work day.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We review the repair with you and close leftover items before the job is done.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Roof Repair FAQs" items={faqs} />
+  <ContactCTA>
+    Get a free quote for roof repair in Calgary and surrounding communities.
+  </ContactCTA>
+</BaseLayout>

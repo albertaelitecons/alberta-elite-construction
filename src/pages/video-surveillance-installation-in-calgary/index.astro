@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'Do you install security cameras on existing Calgary homes?',
+    answer:
+      'Yes. We plan camera locations around entries, yards, and driveways, then run cable and mount hardware so the system matches how you use the property.',
+  },
+  {
+    question: 'Do I need a permit for a home camera system in Calgary?',
+    answer:
+      'Most residential camera installs do not need a building permit. We still check electrical work, exterior penetrations, and neighbour privacy so the install stays clean and compliant.',
+  },
+  {
+    question: 'Can you work with a system I already own?',
+    answer:
+      'Often yes. We review the existing recorder, cameras, and wiring on site, then quote additions or a full replacement if the current setup cannot cover the house.',
+  },
+];
+---
+
+<BaseLayout
+  path="/video-surveillance-installation-in-calgary/"
+  title={`Video Surveillance Installation Calgary | ${site.name}`}
+  description="Video surveillance installation in Calgary. Security camera systems planned, wired, and installed for homes and properties."
+  ogImage="/images/hero/hero-surveillance.jpg"
+>
+  <PageHero
+    kicker="Video surveillance"
+    title="Video Surveillance Installation in Calgary"
+    subtitle="Camera systems planned for coverage, wiring, and how you watch the property."
+    image="/images/hero/hero-surveillance.jpg"
+  />
+
+  <PageIntro
+    kicker="Security systems"
+    title="Clear coverage, clean install"
+    figure="/images/services/camera-cutout.png"
+    figureAlt="Standalone dome security camera"
+  >
+    <p class="k-lead">
+      Alberta Elite Construction installs video surveillance for Calgary homeowners who want a
+      camera system that actually covers the house, not a box of hardware left on the porch.
+    </p>
+    <p class="k-lead">
+      We walk the property, mark camera locations, run cable, and set recording so you can see
+      entries, yards, and driveways after we leave.
+    </p>
+  </PageIntro>
+
+  <FeatureGrid
+    kicker="Included"
+    title="What a surveillance install covers"
+    items={[
+      { title: 'Site layout', text: 'Camera positions planned around entries, yards, and blind spots.' },
+      { title: 'Wiring', text: 'Cable runs, penetrations, and power set cleanly through the house.' },
+      { title: 'Camera mount', text: 'Exterior and interior mounts set for weather, height, and view.' },
+      { title: 'Recording setup', text: 'Recorder, storage, and viewing access configured before handover.' },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Video surveillance in Calgary"
+    lead="Camera counts, cable runs, and recorder type change the price. These are typical starting points before a free site visit and written quote."
+    heading="Transparent starting prices for Calgary camera systems"
+    image="/images/hero/hero-living-room.jpg"
+    imageAlt="Finished Calgary home interior after a renovation"
+    items={[
+      { title: 'Four-camera home system', price: 'Quoted after a site visit' },
+      { title: 'Eight-camera property system', price: 'Quoted after a site visit' },
+      { title: 'Add cameras to an existing system', price: 'Quoted after a site visit' },
+      { title: 'Wiring and recorder upgrade', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary surveillance project runs"
+    steps={[
+      {
+        title: 'Walk the property',
+        text: 'We mark entries, yards, and driveways, then talk through who needs access to the live view.',
+        detail: 'Cable paths and recorder location are noted before we write a price.',
+      },
+      {
+        title: 'Written quote',
+        text: 'You approve a fixed scope for cameras, wiring, mounts, and recorder setup.',
+        detail: 'Any change after that is written down so the price stays clear.',
+      },
+      {
+        title: 'Install',
+        text: 'Cameras go up, cable is run, and the recorder is connected on one schedule.',
+        detail: 'We keep penetrations tidy and protect finished rooms while we work.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We test every camera with you, confirm recording, and close leftover items.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Surveillance FAQs" items={faqs} />
+  <ContactCTA>
+    Request a free quote for video surveillance installation in Calgary.
+  </ContactCTA>
+</BaseLayout>

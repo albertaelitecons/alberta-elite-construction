@@ -1,0 +1,76 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  tone?: 'light' | 'dark';
+  compact?: boolean;
+}
+
+const { tone = 'dark', compact = false } = Astro.props;
+const id = tone === 'light' ? 'contact' : 'quote';
+---
+
+<form
+  action={`https://formsubmit.co/${site.email}`}
+  method="POST"
+  class:list={['k-quote', tone === 'light' ? 'is-light' : 'is-dark']}
+>
+  <input type="hidden" name="_subject" value="New quote request - Alberta Elite Construction" />
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="text" name="_honey" class="k-quote-honey" tabindex="-1" autocomplete="off" />
+  <input type="hidden" name="_next" value={`${site.url}/thank-you/`} />
+
+  <div class="k-quote-grid">
+    <div class="k-field">
+      <label for={`${id}-name`}>Full name</label>
+      <input id={`${id}-name`} required name="name" autocomplete="name" />
+    </div>
+    <div class="k-field">
+      <label for={`${id}-phone`}>Phone</label>
+      <input id={`${id}-phone`} required type="tel" name="phone" autocomplete="tel" />
+    </div>
+    <div class="k-field k-field-wide">
+      <label for={`${id}-email`}>Email</label>
+      <input id={`${id}-email`} required type="email" name="email" autocomplete="email" />
+    </div>
+    <div class="k-field k-field-wide">
+      <label for={`${id}-type`}>Project type</label>
+      <div class="k-select">
+        <select id={`${id}-type`} name="project_type" required>
+          <option value="" disabled selected>Select a project</option>
+          <option>Kitchen remodeling</option>
+          <option>Bathroom remodeling</option>
+          <option>Home remodeling</option>
+          <option>Basement development</option>
+          <option>Legal suite</option>
+          <option>Garage development</option>
+          <option>Deck installation</option>
+          <option>Fence installation</option>
+          <option>Video surveillance installation</option>
+          <option>Roof repair</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    {
+      !compact && (
+        <div class="k-field k-field-wide">
+          <label for={`${id}-message`}>Project details</label>
+          <textarea
+            id={`${id}-message`}
+            required
+            name="message"
+            rows="5"
+            placeholder="Neighborhood, timeline, and what you want built."
+          />
+        </div>
+      )
+    }
+  </div>
+
+  <div class="k-quote-foot">
+    <p class="k-quote-note">We reply with a clear next step, usually within one business day.</p>
+    <button type="submit" class="k-pill k-pill-solid k-form-submit">Send request</button>
+  </div>
+</form>

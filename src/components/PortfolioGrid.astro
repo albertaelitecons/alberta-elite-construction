@@ -1,0 +1,343 @@
+---
+import { categoryLabel, portfolio, portfolioCategories } from '../data/portfolio';
+import SectionHeading from './SectionHeading.astro';
+
+interface Props {
+  dark?: boolean;
+  showHeading?: boolean;
+  limit?: number;
+}
+
+const { showHeading = false, limit } = Astro.props;
+const items = limit ? portfolio.slice(0, limit) : portfolio;
+
+const shapeFor = (index: number) => {
+  switch (index % 7) {
+    case 0:
+      return 'feature';
+    case 1:
+      return 'pair';
+    case 2:
+    case 3:
+    case 4:
+      return 'third';
+    case 5:
+      return 'wide';
+    default:
+      return 'tall';
+  }
+};
+
+const pad = (value: number) => String(value).padStart(2, '0');
+
+const counts = Object.fromEntries(
+  portfolioCategories.map((cat) => [
+    cat.id,
+    cat.id === 'all' ? items.length : items.filter((item) => item.category === cat.id).length,
+  ]),
+) as Record<string, number>;
+
+---
+
+<section class="folio" id="portfolio-grid">
+  <div class="folio-shell">
+    {
+      showHeading && (
+        <SectionHeading
+          light
+          before="Feature "
+          accent="Works"
+          subtitle="Real Calgary projects from our garage, basement, kitchen, and exterior teams."
+        />
+      )
+    }
+
+    <div class="folio-body">
+      <aside class="folio-rail">
+        <div class="folio-rail-meta">
+          <p class="folio-rail-mark">Alberta Elite</p>
+          <p class="folio-rail-index">
+            Index <b data-folio-count>{pad(items.length)}</b>
+          </p>
+        </div>
+        <div class="folio-filters" role="tablist" aria-label="Filter projects">
+          {portfolioCategories.map((cat, index) => (
+            <button
+              type="button"
+              class:list={['folio-filter', index === 0 && 'is-active']}
+              data-filter={cat.id}
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+            >
+              <span>{cat.label}</span>
+              <b>{pad(counts[cat.id] ?? 0)}</b>
+            </button>
+          ))}
+        </div>
+      </aside>
+
+      <div class="folio-stage" id="folio-stage">
+        {items.map((item, index) => (
+          <article
+            class="folio-item"
+            data-category={item.category}
+            data-shape={shapeFor(index)}
+            data-index={index}
+          >
+            <button
+              type="button"
+              class="folio-shot"
+              aria-label={`View ${item.title}`}
+              data-title={item.title}
+              data-category-label={categoryLabel(item.category)}
+            >
+              <span class="folio-frame">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  loading={index < 4 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <span class="folio-marks" aria-hidden="true">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </span>
+                <span class="folio-spine">{categoryLabel(item.category)}</span>
+              </span>
+              <span class="folio-spec">
+                <span class="folio-num">{pad(index + 1)}</span>
+                <span class="folio-spec-copy">
+                  <small>{categoryLabel(item.category)}</small>
+                  <strong>{item.title}</strong>
+                </span>
+              </span>
+            </button>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    {
+      limit && (
+        <div class="folio-more">
+          <a href="/portfolio/" class="k-pill">
+            View full archive
+          </a>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="folio-lens" hidden aria-hidden="true"><span>View</span></div>
+
+  <div class="k-lightbox folio-lightbox" hidden role="dialog" aria-modal="true" aria-label="Portfolio photo">
+    <div class="k-lightbox-frame">
+      <button type="button" class="k-lightbox-close" aria-label="Close photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+      </button>
+      <button type="button" class="k-lightbox-prev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"></path></svg>
+      </button>
+      <img alt="" />
+      <button type="button" class="k-lightbox-next" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+      </button>
+      <p class="folio-lightbox-cap">
+        <span data-folio-light-num></span>
+        <span data-folio-light-cat></span>
+        <strong data-folio-light-title></strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const shapeFor = (index: number) => {
+    switch (index % 7) {
+      case 0:
+        return 'feature';
+      case 1:
+        return 'pair';
+      case 2:
+      case 3:
+      case 4:
+        return 'third';
+      case 5:
+        return 'wide';
+      default:
+        return 'tall';
+    }
+  };
+
+  const pad = (value: number) => String(value).padStart(2, '0');
+
+  const initFolio = () => {
+    const root = document.querySelector<HTMLElement>('#portfolio-grid');
+    if (!root || root.dataset.bound === '1') return;
+    root.dataset.bound = '1';
+
+    const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('.folio-filter'));
+    const items = Array.from(root.querySelectorAll<HTMLElement>('.folio-item'));
+    const countEl = root.querySelector<HTMLElement>('[data-folio-count]');
+    const lens = root.querySelector<HTMLElement>('.folio-lens');
+    const lightbox = root.querySelector<HTMLElement>('.folio-lightbox');
+    const lightboxImg = lightbox?.querySelector('img');
+    const lightNum = lightbox?.querySelector<HTMLElement>('[data-folio-light-num]');
+    const lightCat = lightbox?.querySelector<HTMLElement>('[data-folio-light-cat]');
+    const lightTitle = lightbox?.querySelector<HTMLElement>('[data-folio-light-title]');
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const visibleItems = () => items.filter((item) => !item.classList.contains('is-hidden'));
+
+    const retile = () => {
+      let visible = 0;
+      items.forEach((item) => {
+        if (item.classList.contains('is-hidden')) return;
+        item.dataset.shape = shapeFor(visible);
+        const num = item.querySelector('.folio-num');
+        if (num) num.textContent = pad(visible + 1);
+        visible += 1;
+      });
+      if (countEl) countEl.textContent = pad(visible);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter ?? 'all';
+        buttons.forEach((btn) => {
+          const active = btn === button;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        items.forEach((item) => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.classList.toggle('is-hidden', !show);
+        });
+        retile();
+      });
+    });
+
+    if (lens && finePointer && !reduceMotion) {
+      let lensX = 0;
+      let lensY = 0;
+      let targetX = 0;
+      let targetY = 0;
+      let ticking = false;
+
+      const moveLens = () => {
+        lensX += (targetX - lensX) * 0.22;
+        lensY += (targetY - lensY) * 0.22;
+        lens.style.transform = `translate3d(${lensX}px, ${lensY}px, 0)`;
+        if (Math.abs(targetX - lensX) > 0.4 || Math.abs(targetY - lensY) > 0.4) {
+          requestAnimationFrame(moveLens);
+        } else {
+          ticking = false;
+        }
+      };
+
+      root.addEventListener('pointermove', (event) => {
+        targetX = event.clientX;
+        targetY = event.clientY;
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(moveLens);
+        }
+      });
+
+      root.querySelectorAll<HTMLElement>('.folio-shot').forEach((shot) => {
+        shot.addEventListener('pointerenter', () => {
+          lens.hidden = false;
+          lens.classList.add('is-on');
+        });
+        shot.addEventListener('pointerleave', () => {
+          lens.classList.remove('is-on');
+        });
+      });
+    }
+
+    if (lightbox && lightboxImg) {
+      let workIndex = 0;
+      let lockedScroll = 0;
+
+      const lockPage = () => {
+        lockedScroll = window.scrollY;
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${lockedScroll}px`;
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
+      };
+
+      const unlockPage = () => {
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        window.scrollTo(0, lockedScroll);
+      };
+
+      const showWork = (index: number) => {
+        const cards = visibleItems();
+        if (!cards.length) return;
+        workIndex = (index + cards.length) % cards.length;
+        const card = cards[workIndex];
+        const shot = card.querySelector<HTMLButtonElement>('.folio-shot');
+        const photo = shot?.querySelector('img');
+        if (!shot || !photo) return;
+        lightboxImg.src = photo.src;
+        lightboxImg.alt = photo.alt;
+        if (lightNum) lightNum.textContent = pad(workIndex + 1);
+        if (lightCat) lightCat.textContent = shot.dataset.categoryLabel ?? '';
+        if (lightTitle) lightTitle.textContent = shot.dataset.title ?? '';
+      };
+
+      const openWork = (index: number) => {
+        showWork(index);
+        if (lightbox.hidden) {
+          lockPage();
+          lightbox.hidden = false;
+          lightbox.classList.add('is-open');
+        }
+      };
+
+      const closeWork = () => {
+        if (lightbox.hidden) return;
+        lightbox.classList.remove('is-open');
+        lightbox.hidden = true;
+        unlockPage();
+      };
+
+      root.querySelector('.folio-stage')?.addEventListener('click', (event) => {
+        const shot = (event.target as HTMLElement).closest<HTMLButtonElement>('.folio-shot');
+        if (!shot) return;
+        const card = shot.closest<HTMLElement>('.folio-item');
+        if (!card) return;
+        event.preventDefault();
+        openWork(visibleItems().indexOf(card));
+      });
+
+      lightbox.querySelector('.k-lightbox-close')?.addEventListener('click', closeWork);
+      lightbox.querySelector('.k-lightbox-prev')?.addEventListener('click', () => showWork(workIndex - 1));
+      lightbox.querySelector('.k-lightbox-next')?.addEventListener('click', () => showWork(workIndex + 1));
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeWork();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (lightbox.hidden) return;
+        if (event.key === 'Escape') closeWork();
+        if (event.key === 'ArrowLeft') showWork(workIndex - 1);
+        if (event.key === 'ArrowRight') showWork(workIndex + 1);
+      });
+    }
+  };
+
+  document.addEventListener('astro:page-load', initFolio);
+</script>

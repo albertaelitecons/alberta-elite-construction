@@ -1,0 +1,52 @@
+---
+interface Props {
+  type: 'basement' | 'kitchen' | 'bath' | 'build' | 'home' | 'contract';
+}
+
+const { type } = Astro.props;
+---
+
+<div class="flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-brand">
+  {
+    type === 'basement' && (
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M4 20h16M6 20V10l6-6 6 6v10" /><path d="M10 20v-6h4v6" />
+      </svg>
+    )
+  }
+  {
+    type === 'kitchen' && (
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M4 10h16M6 10V6h12v4" /><path d="M8 14h8v8H8z" />
+      </svg>
+    )
+  }
+  {
+    type === 'bath' && (
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M5 12h14a2 2 0 0 1 2 2v3H3v-3a2 2 0 0 1 2-2z" /><path d="M7 12V8a2 2 0 0 1 2-2h1" />
+      </svg>
+    )
+  }
+  {
+    type === 'build' && (
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.7 2.7-2.7-2.7 2.7-2.7z" />
+      </svg>
+    )
+  }
+  {
+    type === 'home' && (
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M3 11.5 12 4l9 7.5" /><path d="M5 10.5V20h14v-9.5" />
+      </svg>
+    )
+  }
+  {
+    type === 'contract' && (
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /><rect x="9" y="3" width="6" height="4" rx="1" /><path d="M9 14h6M9 18h4" />
+      </svg>
+    )
+  }
+</div>

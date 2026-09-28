@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ContactCTA from '../../../components/ContactCTA.astro';
+import { site, blogCategories } from '../../../data/site';
+import { blogPosts, formatBlogDate, type BlogPost } from '../../../data/blog';
+import articles from '../../../data/blog-articles.json';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const articleHtml = (articles as Record<string, string>)[post.slug] ?? `<p>${post.excerpt}</p>`;
+const category = blogCategories.find((item) => item.slug === post.category);
+const images: Record<BlogPost['category'], string> = {
+  'garage-development': '/images/hero/hero-garage.jpg',
+  'basement-development': '/images/hero/hero-basement.jpg',
+  'legal-suites': '/images/hero/hero-basement.jpg',
+  'deck-installation': '/images/hero/about-hero.jpg',
+  'fence-installation': '/images/services/fence.jpg',
+};
+---
+
+<BaseLayout
+  bodyClass="k-article-page"
+  path={`/blog/detail/${post.slug}/`}
+  title={`${post.title} | ${site.name}`}
+  description={post.excerpt}
+  ogImage={images[post.category]}
+>
+  <PageHero
+    kicker={post.categoryLabel}
+    title={post.title}
+    subtitle={formatBlogDate(post.date)}
+    image={images[post.category]}
+  />
+
+  <section class="k-page-section">
+    <p class="k-article-back">
+      <a href={category?.href ?? '/blog/'}>← {category?.label ?? 'All articles'}</a>
+    </p>
+    <div class="k-article" set:html={articleHtml} />
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

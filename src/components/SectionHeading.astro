@@ -1,0 +1,48 @@
+---
+interface Props {
+  /** Text before accent (optional if using plain title) */
+  before?: string;
+  /** Highlighted word in brand orange */
+  accent?: string;
+  after?: string;
+  /** Plain title when not using accent split */
+  title?: string;
+  subtitle?: string;
+  light?: boolean;
+  align?: 'center' | 'left';
+}
+
+const { before, accent, after, title, subtitle, light = false, align = 'center' } = Astro.props;
+---
+
+<div class:list={[align === 'center' ? 'text-center' : 'text-left', 'mb-10 md:mb-12']}>
+  <h2 class:list={['section-title', light ? 'text-white' : 'text-ink']}>
+    {
+      accent ? (
+        <>
+          {before}
+          <span class="text-brand">{accent}</span>
+          {after}
+        </>
+      ) : (
+        title
+      )
+    }
+  </h2>
+  <div class:list={['section-rule', align === 'left' && 'justify-start md:mx-0']}>
+    <span></span>
+  </div>
+  {
+    subtitle && (
+      <p
+        class:list={[
+          'mx-auto mt-5 max-w-2xl text-base leading-relaxed md:text-lg',
+          light ? 'text-white/75' : 'text-brand-muted',
+          align === 'left' && 'mx-0',
+        ]}
+      >
+        {subtitle}
+      </p>
+    )
+  }
+</div>

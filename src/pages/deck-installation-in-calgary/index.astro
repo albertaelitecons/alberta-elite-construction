@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout
+  path="/deck-installation-in-calgary/"
+  title={`Deck Construction and Improvement | ${site.name}`}
+  description="Deck installation in Calgary - pressure-treated wood, cedar, and composite decks built for Alberta weather."
+  ogImage="/images/hero/hero-deck.jpg"
+>
+  <PageHero
+    kicker="Deck installation"
+    title="Deck Installation in Calgary"
+    subtitle="Innovative deck designs built to withstand Calgary's climate."
+    image="/images/hero/hero-deck.jpg"
+  />
+
+  <PageIntro kicker="Why choose us" title="Decks built for Alberta winters">
+    <p class="k-lead">
+      Licensed and insured deck construction with pressure-treated, cedar, and composite options
+      selected for Alberta weather, plus permit assistance for Calgary requirements.
+    </p>
+    <p class="k-lead">
+      Every project includes a workmanship warranty and transparent pricing after a site visit.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="Outdoor living"
+    title="A yard you can actually use"
+    image="/images/services/deck.jpg"
+    imageAlt="Finished Calgary deck with dining space and built-in seating"
+    media="start"
+  >
+    <p>
+      Calgary summers are short. We build decks for dining, shade, and winter load so the structure
+      stays true through freeze, thaw, and snow.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Materials"
+    title="Our available materials"
+    items={[
+      { title: 'Composite', text: 'Low maintenance with a finished look.' },
+      { title: 'Treated wood', text: 'Classic, reliable wood construction.' },
+      { title: 'Cedar', text: 'Naturally beautiful and durable.' },
+      { title: 'Larch', text: 'Strength with a warm natural grain.' },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Typical 2026 planning estimates"
+    lead="Final deck pricing depends on size, material, stairs, railings, and grade. These figures are a starting point before a free site visit and written quote."
+    heading="Transparent starting prices for Calgary decks"
+    image="/images/services/deck.jpg"
+    imageAlt="Wood deck installation in Calgary"
+    items={[
+      { title: 'Pressure-treated wood decking', price: 'CA$30 to $55 / sq ft' },
+      { title: 'Cedar decking', price: 'CA$40 to $65 / sq ft' },
+      { title: 'Composite decking', price: 'CA$50 to $95 / sq ft' },
+      { title: 'Small deck (100 to 150 sq ft)', price: 'CA$5,000 to $10,000' },
+      { title: 'Medium deck (200 to 300 sq ft)', price: 'CA$10,000 to $22,000' },
+      { title: 'Large deck (300 to 500 sq ft)', price: 'CA$18,000 to $35,000+' },
+    ]}
+  />
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary deck project runs"
+    steps={[
+      {
+        title: 'Yard visit',
+        text: 'We measure the house, grade, and how you want to use the deck through summer and winter.',
+        detail: 'Ledger location, stairs, and privacy are sketched before we talk materials.',
+      },
+      {
+        title: 'Written quote',
+        text: 'You approve a fixed price for framing, decking, railings, and any stain or composite finish.',
+        detail: 'Permit needs for height or size are called out in the same document.',
+      },
+      {
+        title: 'Build',
+        text: 'Footings, framing, decking, and railings go in for frost, snow load, and drainage.',
+        detail: 'We keep the yard usable where we can and tell you when access will be limited.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We check fasteners, rails, and finish with you before the job is closed.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <ContactCTA>
+    Get a free quote for deck construction in Calgary and surrounding communities.
+  </ContactCTA>
+</BaseLayout>

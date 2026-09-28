@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout
+  path="/locations/"
+  title={`Locations | ${site.name}`}
+  description={`Alberta Elite Construction serves Calgary and communities within ${site.serviceRadiusMiles} miles of our SE Calgary shop.`}
+>
+  <PageHero
+    kicker="Locations"
+    title="Locations we serve"
+    subtitle={`Kitchen, bathroom, basement, garage, deck, and fence projects across Calgary and neighbouring communities within ${site.serviceRadiusMiles} miles of our shop.`}
+    image="/images/hero/hero-living-room.jpg"
+  />
+
+  <LocationsSection />
+  <ServicesSection kicker="Our services" follow />
+  <ContactCTA />
+</BaseLayout>

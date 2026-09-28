@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import BlogSidebar from '../../../components/BlogSidebar.astro';
+import BlogPostList from '../../../components/BlogPostList.astro';
+import { site } from '../../../data/site';
+import { postsByCategory } from '../../../data/blog';
+---
+
+<BaseLayout
+  path="/blog/deck-installation/"
+  title={`Deck Installation in Calgary | ${site.name}`}
+  description="Custom decks designed for Calgary's climate and your lifestyle."
+>
+  <PageHero
+    kicker="Journal"
+    title="Deck installation blog"
+    subtitle="Custom decks designed for Calgary climate and your lifestyle."
+    image="/images/hero/about-hero.jpg"
+  />
+
+  <section class="k-page-section">
+    <div class="k-blog-layout">
+      <BlogPostList posts={postsByCategory('deck-installation')} />
+      <BlogSidebar active="deck-installation" />
+    </div>
+  </section>
+</BaseLayout>

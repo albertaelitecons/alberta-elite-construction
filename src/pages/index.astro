@@ -1,0 +1,461 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import LocationsSection from '../components/LocationsSection.astro';
+import PricingSection from '../components/PricingSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import { site } from '../data/site';
+import { googleReviews, googleReviewStats } from '../data/reviews';
+import { categoryLabel, portfolio } from '../data/portfolio';
+
+const slides = [
+  { image: '/images/hero/hero-living-room.jpg', alt: 'Finished Calgary living room renovation' },
+  { image: '/images/hero/hero-kitchen.jpg', alt: 'Modern kitchen remodeling in Calgary' },
+  { image: '/images/hero/hero-deck.jpg', alt: 'Custom wood deck installation' },
+  { image: '/images/hero/hero-basement.jpg', alt: 'Basement development in Calgary' },
+  { image: '/images/hero/hero-garage.jpg', alt: 'Custom garage construction in Calgary' },
+];
+
+const reasons = [
+  {
+    title: 'Full Service',
+    text: 'One contractor for kitchens, basements, garages, decks, and fences - from permits to final walkthrough.',
+    icon: 'service',
+  },
+  {
+    title: 'Deliver Value',
+    text: 'Clear written scopes, honest pricing, and finishes that add lasting value to your Calgary home.',
+    icon: 'value',
+  },
+  {
+    title: 'True Partner',
+    text: 'We stay in touch through every stage so you always know what is happening on site.',
+    icon: 'partner',
+  },
+  {
+    title: 'Integrity',
+    text: 'Licensed, insured, and backed by a 2-year workmanship warranty on our labour.',
+    icon: 'integrity',
+  },
+];
+
+const reviewStars = (count: number) => '★'.repeat(count) + '☆'.repeat(Math.max(0, 5 - count));
+
+const stats = [
+  { value: '15+', label: 'Years experience' },
+  { value: '20', label: 'Mile service radius' },
+  { value: '1,000+', label: 'Satisfied customers' },
+  { value: '2-yr', label: 'Workmanship warranty' },
+];
+
+const works = [0, 6, 23, 25, 16, 4]
+  .map((index) => portfolio[index])
+  .filter((item): item is (typeof portfolio)[number] => Boolean(item));
+---
+
+<HomeLayout>
+  <section class="k-hero" aria-label="Hero">
+    <div class="k-hero-slides">
+      {
+        slides.map((slide, index) => (
+          <div class:list={['k-hero-slide', index === 0 && 'is-active is-initial']} data-slide={index}>
+            <img
+              src={slide.image}
+              alt={slide.alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'auto'}
+            />
+          </div>
+        ))
+      }
+    </div>
+    <div class="k-hero-overlay"></div>
+
+    <div class="k-hero-copy">
+      <p class="k-kicker">Design your home with the experts</p>
+      <h1>Home renovation in <span class="k-nowrap">Calgary &amp; surrounding area</span></h1>
+      <a class="k-pill" href="/contact/">Get a quote →</a>
+    </div>
+
+    <div class="k-hero-dots">
+      {slides.map((_, index) => (
+        <button type="button" class:list={['k-dot', index === 0 && 'is-active']} data-slide={index} aria-label={`Slide ${index + 1}`} />
+      ))}
+    </div>
+  </section>
+
+  <section class="k-about">
+    <div class="k-wrap k-about-grid">
+      <div class="k-years">
+        <strong>15+</strong>
+        <span>Years of experience</span>
+      </div>
+      <div class="k-about-mid">
+        <p class="k-kicker">About us</p>
+        <h2>Masterful builders for creative solutions</h2>
+      </div>
+      <div class="k-about-copy">
+        <p class="k-lead">
+          Alberta Elite Construction is a Calgary general contractor for kitchen remodeling, basement
+          development, bathrooms, garages, decks, and fences. We plan, permit, and build to a standard
+          that lasts - with clear communication from the first visit to the final walkthrough.
+        </p>
+        <a class="k-pill k-pill-ghost" href="/about/">Continue reading →</a>
+      </div>
+    </div>
+  </section>
+
+  <ServicesSection />
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Why choose us</p>
+      <h2 class="k-why-title">We work to an extremely high standard of customer satisfaction</h2>
+      <div class="k-why-grid">
+        {
+          reasons.map((item) => (
+            <article>
+              <div class="k-icon-ring" aria-hidden="true">
+                {item.icon === 'service' && (
+                  <svg viewBox="0 0 24 24">
+                    <path d="m3 10 9-7 9 7v10a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20z" />
+                    <path d="M9 21.5V12h6v9.5" />
+                  </svg>
+                )}
+                {item.icon === 'value' && (
+                  <svg viewBox="0 0 24 24">
+                    <path d="M6 3h12l4 7-10 12L2 10z" />
+                    <path d="M2 10h20" />
+                  </svg>
+                )}
+                {item.icon === 'partner' && (
+                  <svg viewBox="0 0 24 24">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                )}
+                {item.icon === 'integrity' && (
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                )}
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="k-promo">
+    <img src="/images/hero/promo-kitchen-bw.jpg" alt="Finished Calgary kitchen renovation" />
+    <div class="k-promo-copy">
+      <p class="k-kicker">Call now</p>
+      <h2>Ready to start?<br />Call us today</h2>
+      <p class="k-promo-lead">
+        Tell us about your kitchen, basement, garage, or deck. We will walk the site and send a
+        free, no-obligation quote.
+      </p>
+      <a class="k-pill" href={site.phoneHref}>Call {site.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <section class="k-works">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Our portfolio</p>
+      <h2>Browse the archive</h2>
+      <p class="k-works-lead">
+        Selected plates from Alberta Elite job sites — kitchens, interiors, decks, and finishes
+        built for Calgary homes.
+      </p>
+      <div class="k-works-grid">
+        {
+          works.map((item) => (
+            <button type="button" class="k-works-card" aria-label={`View ${item.title}`}>
+              <img src={item.image} alt={item.alt} loading="lazy" />
+              <span class="k-works-meta">
+                <small>{categoryLabel(item.category)}</small>
+                <strong>{item.title}</strong>
+              </span>
+            </button>
+          ))
+        }
+      </div>
+      <div class="k-works-more">
+        <a class="k-pill" href="/portfolio/">See the full archive</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="k-lightbox" hidden role="dialog" aria-modal="true" aria-label="Portfolio photo">
+    <div class="k-lightbox-frame">
+      <button type="button" class="k-lightbox-close" aria-label="Close photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+      </button>
+      <button type="button" class="k-lightbox-prev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
+      </button>
+      <img alt="" />
+      <button type="button" class="k-lightbox-next" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <PricingSection />
+
+  <LocationsSection />
+
+  <section class="k-elegance">
+    <div class="k-elegance-media">
+      <img
+        src="/images/hero/elegance-kitchen.jpg"
+        alt="Kitchen remodeling with island and custom cabinetry in Calgary"
+      />
+    </div>
+    <div class="k-elegance-copy">
+      <div class="k-elegance-badge" aria-hidden="true">15+</div>
+      <h2>Effortless elegance<br />in every renovation.</h2>
+      <p>
+        From first framing to the last coat of paint, we keep the site organized and the finish
+        consistent - so your home looks considered, not overworked.
+      </p>
+      <a class="k-pill k-pill-solid" href="/contact/">Get in touch now →</a>
+    </div>
+  </section>
+
+  <section class="k-reviews">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Google reviews</p>
+      <h2>What our happy clients<br />say about us</h2>
+      <p class="k-reviews-meta">
+        <span class="k-reviews-score">{googleReviewStats.rating.toFixed(1)}</span>
+        <span class="k-review-stars" aria-hidden="true">{reviewStars(5)}</span>
+        <a href={site.reviewsUrl} target="_blank" rel="noreferrer">
+          {googleReviewStats.count} Google reviews
+        </a>
+      </p>
+      <div class="k-reviews-slider">
+        <button type="button" class="k-carousel-btn k-reviews-prev" aria-label="Previous reviews">‹</button>
+        <div class="k-reviews-viewport">
+          <div class="k-reviews-track">
+            {
+              googleReviews.map((item) => (
+                <article>
+                  <span class="k-review-stars" aria-label={`${item.stars} star Google review`}>
+                    {reviewStars(item.stars)}
+                  </span>
+                  <p>{item.quote}</p>
+                  <div class="k-reviewer">
+                    <span>{item.initials}</span>
+                    <div>
+                      <strong>{item.name}</strong>
+                      <small>Google review</small>
+                    </div>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+        <button type="button" class="k-carousel-btn k-reviews-next" aria-label="Next reviews">›</button>
+      </div>
+      <p class="k-reviews-note">
+        <a href={site.reviewsUrl} target="_blank" rel="noreferrer">Read all reviews on Google</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="k-philosophy">
+    <div class="k-philosophy-copy">
+      <p class="k-kicker">Our approach</p>
+      <h2>Built for the way you live</h2>
+      <p>
+        We design and build around how your family actually uses the house - not a catalogue finish
+        that looks good for a week.
+      </p>
+      <a class="k-pill" href="/portfolio/">Explore our work →</a>
+    </div>
+    <div class="k-philosophy-media">
+      <img src="/images/hero/philosophy-feature-wall.jpg" alt="Living room feature wall and fireplace after a Calgary remodel" />
+    </div>
+  </section>
+
+  <section class="k-stats">
+    <div class="k-wrap k-stats-row">
+      {
+        stats.map((item) => (
+          <div>
+            <strong>{item.value}</strong>
+            <span>{item.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="k-closer">
+    <img src="/images/hero/promo-kitchen-bw.jpg" alt="" />
+    <div class="k-closer-copy">
+      <p class="k-kicker">Start a project</p>
+      <h2>Designing the home<br />you’ve always imagined.</h2>
+      <a class="k-pill k-pill-solid" href="/contact/">Book a meeting</a>
+    </div>
+  </section>
+
+</HomeLayout>
+
+<script>
+  const INTERVAL_MS = 6500;
+  const INITIAL_FADE_MS = 2800;
+
+  const root = document.querySelector('.k-hero');
+  if (root) {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.k-hero-slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('.k-dot'));
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    const setSlide = (index: number) => {
+      const next = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === next);
+        slide.classList.remove('is-initial');
+      });
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === next));
+      current = next;
+    };
+
+    const start = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => setSlide(current + 1), INTERVAL_MS);
+    };
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        setSlide(Number(dot.dataset.slide));
+        start();
+      });
+    });
+
+    window.setTimeout(() => {
+      slides[0]?.classList.remove('is-initial');
+      start();
+    }, INITIAL_FADE_MS);
+  }
+
+  const lightbox = document.querySelector<HTMLElement>('.k-lightbox');
+  const lightboxImg = lightbox?.querySelector('img');
+  const getWorkCards = () => Array.from(document.querySelectorAll<HTMLButtonElement>('.k-works-card'));
+
+  if (lightbox && lightboxImg) {
+    let workIndex = 0;
+    let lockedScroll = 0;
+
+    const lockPage = () => {
+      lockedScroll = window.scrollY;
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${lockedScroll}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    };
+
+    const unlockPage = () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, lockedScroll);
+    };
+
+    const showWork = (index: number) => {
+      const cards = getWorkCards();
+      if (!cards.length) return;
+      workIndex = (index + cards.length) % cards.length;
+      const photo = cards[workIndex].querySelector('img');
+      if (!photo) return;
+      lightboxImg.src = photo.src;
+      lightboxImg.alt = photo.alt;
+    };
+
+    const openWork = (index: number) => {
+      showWork(index);
+      if (lightbox.hidden) {
+        lockPage();
+        lightbox.hidden = false;
+        lightbox.classList.add('is-open');
+      }
+    };
+
+    const closeWork = () => {
+      if (lightbox.hidden) return;
+      lightbox.classList.remove('is-open');
+      lightbox.hidden = true;
+      unlockPage();
+    };
+
+    document.querySelector('.k-works')?.addEventListener('click', (event) => {
+      const card = (event.target as HTMLElement).closest<HTMLButtonElement>('.k-works-card');
+      if (!card) return;
+      event.preventDefault();
+      openWork(getWorkCards().indexOf(card));
+    });
+    lightbox.querySelector('.k-lightbox-close')?.addEventListener('click', closeWork);
+    lightbox.querySelector('.k-lightbox-prev')?.addEventListener('click', () => showWork(workIndex - 1));
+    lightbox.querySelector('.k-lightbox-next')?.addEventListener('click', () => showWork(workIndex + 1));
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeWork();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (lightbox.hidden) return;
+      if (event.key === 'Escape') closeWork();
+      if (event.key === 'ArrowLeft') showWork(workIndex - 1);
+      if (event.key === 'ArrowRight') showWork(workIndex + 1);
+    });
+  }
+
+  const reviewsSlider = document.querySelector<HTMLElement>('.k-reviews-slider');
+  const reviewsTrack = document.querySelector<HTMLElement>('.k-reviews-track');
+  if (reviewsSlider && reviewsTrack) {
+    const reviewCards = Array.from(reviewsTrack.querySelectorAll('article'));
+    let reviewIndex = 0;
+
+    const reviewsPerView = () => (window.innerWidth < 800 ? 1 : 2);
+    const reviewStep = () => {
+      const viewW = reviewsSlider.querySelector<HTMLElement>('.k-reviews-viewport')?.clientWidth ?? 0;
+      return viewW / reviewsPerView();
+    };
+    const maxReviewIndex = () => Math.max(0, reviewCards.length - reviewsPerView());
+
+    const layoutReviews = () => {
+      const width = reviewStep();
+      reviewCards.forEach((card) => {
+        card.style.flex = `0 0 ${width}px`;
+      });
+      reviewIndex = Math.min(reviewIndex, maxReviewIndex());
+      reviewsTrack.style.transform = `translateX(-${reviewIndex * width}px)`;
+    };
+
+    const stepReviews = (dir: number) => {
+      reviewIndex = Math.min(maxReviewIndex(), Math.max(0, reviewIndex + dir * reviewsPerView()));
+      reviewsTrack.style.transition = 'transform 0.55s ease';
+      reviewsTrack.style.transform = `translateX(-${reviewIndex * reviewStep()}px)`;
+    };
+
+    reviewsSlider.querySelector('.k-reviews-prev')?.addEventListener('click', () => stepReviews(-1));
+    reviewsSlider.querySelector('.k-reviews-next')?.addEventListener('click', () => stepReviews(1));
+    window.addEventListener('resize', layoutReviews);
+    layoutReviews();
+  }
+
+</script>

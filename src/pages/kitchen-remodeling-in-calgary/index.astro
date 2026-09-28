@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const faqs = [
+  {
+    question: 'How much does a kitchen remodel cost in Calgary?',
+    answer:
+      'Kitchen remodeling costs depend on layout changes, cabinetry quality, countertops, appliances, and electrical or plumbing moves. Many mid-range Calgary kitchen renovations fall between $35,000 and $75,000+, while premium projects with structural changes can exceed that. We provide a detailed fixed-scope quote after an in-home consultation.',
+  },
+  {
+    question: 'How long does a kitchen renovation take?',
+    answer:
+      'Typical kitchen remodels take several weeks to a few months depending on custom cabinetry lead times, permit requirements, and scope. We share a clear schedule before demolition begins.',
+  },
+  {
+    question: 'Do I need permits for a kitchen remodel in Calgary?',
+    answer:
+      'Permits are often required when you alter plumbing, gas lines, electrical circuits, or structural walls. Our team identifies permit needs early and manages applications where required.',
+  },
+  {
+    question: 'Can I use my kitchen during the renovation?',
+    answer:
+      'Most kitchen projects require a temporary shutdown of the space during demolition and rough-in. We plan the sequence to minimize downtime elsewhere in the home and keep the site organized.',
+  },
+];
+---
+
+<BaseLayout
+  path="/kitchen-remodeling-in-calgary/"
+  title={`Kitchen Remodeling Calgary | ${site.name}`}
+  description="Kitchen remodeling contractors in Calgary - custom cabinetry, islands, countertops, and full kitchen renovations."
+  ogImage="/images/hero/hero-kitchen.jpg"
+>
+  <PageHero
+    kicker="Kitchen remodeling"
+    title="Kitchen Remodeling in Calgary"
+    subtitle="Custom kitchens designed for how you cook, entertain, and live every day."
+    image="/images/hero/hero-kitchen.jpg"
+  />
+
+  <PageIntro kicker="Our approach" title="One team for the whole kitchen">
+    <p class="k-lead">
+      Alberta Elite Construction delivers full kitchen remodeling in Calgary, from layout planning
+      and trade coordination to cabinetry, countertops, lighting, and final finishes.
+    </p>
+    <p class="k-lead">
+      As home remodeling contractors, we manage one timeline, one budget, and one team accountable
+      for the result.
+    </p>
+  </PageIntro>
+
+  <FeatureGrid
+    kicker="Included"
+    title="Kitchen renovation services"
+    columns={3}
+    items={[
+      { title: 'Layout design', text: 'Kitchen design and layout optimization for how you cook.' },
+      { title: 'Custom cabinetry', text: 'Custom and semi-custom cabinetry installation.' },
+      { title: 'Islands and stone', text: 'Island design with stone or quartz countertops.' },
+      { title: 'Lighting and tile', text: 'Waterfall edges, backsplash tile, and feature lighting.' },
+      { title: 'Trade coordination', text: 'Plumbing, gas, and electrical coordinated on one schedule.' },
+      { title: 'Final finishes', text: 'Flooring, trim, painting, and appliance placement.' },
+    ]}
+  />
+
+  <PageSplit
+    kicker="Custom kitchens"
+    title="The room the house runs on"
+    image="/images/services/kitchen.jpg"
+    imageAlt="Custom Calgary kitchen with island, cabinetry, and stone counters"
+    media="start"
+  >
+    <p>
+      Cabinets, stone, lighting, and trades have to land on one schedule. We remodel Calgary kitchens
+      so the layout, island, and finishes work for how you cook, not only how they photograph.
+    </p>
+  </PageSplit>
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Why choose us</p>
+      <h2 class="k-why-title">Built to a finish you can live with</h2>
+      <div class="k-guarantee-grid is-2">
+        <article class="k-info-card">
+          <h3>Clear written quotes</h3>
+          <p>
+            You approve a defined scope for cabinets, counters, trades, and finishes before
+            demolition begins. Changes after that are written down so the price stays honest.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Tight millwork</h3>
+          <p>
+            Experienced finish carpentry and accurate installs so doors, fillers, and stone
+            sit flush. Details are checked on site, not guessed from a drawing.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Respectful crews</h3>
+          <p>
+            Nearby rooms stay protected while the kitchen is out of service. We contain dust,
+            keep a daily path through the house, and leave the site organized each day.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Code-compliant work</h3>
+          <p>
+            Licensed plumbing, gas, and electrical are coordinated on one schedule. Permit
+            needs are flagged early when walls, circuits, or gas lines change.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <StatsRow />
+
+  <ProcessSteps
+    title="How a Calgary kitchen remodel runs"
+    steps={[
+      {
+        title: 'Walk the kitchen',
+        text: 'We measure the room, check plumbing and electrical, and talk through how you cook and store food.',
+        detail: 'Layout limits, appliance sizes, and permit needs are written down at this visit.',
+      },
+      {
+        title: 'Written quote',
+        text: 'You approve a fixed scope for cabinets, counters, trades, and finishes before demolition starts.',
+        detail: 'Any change after that is documented so the price stays clear.',
+      },
+      {
+        title: 'Build',
+        text: 'Demolition, rough-in, cabinetry, stone, tile, and lighting follow one schedule under our crew.',
+        detail: 'We protect nearby rooms and keep you updated as each trade finishes.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We test fixtures, review the finish, and close leftover items before final payment.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <PricingSection
+    subtitle="Kitchen remodeling in Calgary"
+    lead="Kitchen remodeling costs depend on layout changes, cabinetry, countertops, appliances, and trade work. These ranges are a starting point before a free in-home consultation and written quote."
+    heading="Transparent starting prices for Calgary kitchens"
+    image="/images/services/kitchen.jpg"
+    imageAlt="Kitchen remodeling with custom cabinetry in Calgary"
+    items={[
+      { title: 'Mid-range kitchen renovation', price: 'From $35,000' },
+      { title: 'Premium kitchen renovation', price: 'From $75,000+' },
+      { title: 'Cabinetry and stone package', price: 'Quoted after a site visit' },
+      { title: 'Layout change with plumbing move', price: 'Quoted after a site visit' },
+    ]}
+  />
+
+  <ServicesSection follow />
+  <LocationsSection />
+  <FAQ title="Kitchen Remodeling FAQs" items={faqs} />
+  <ContactCTA>
+    Request a free kitchen remodeling consultation in Calgary.
+  </ContactCTA>
+</BaseLayout>
