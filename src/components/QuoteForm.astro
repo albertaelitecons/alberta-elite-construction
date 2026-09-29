@@ -1,6 +1,4 @@
 ---
-import { site } from '../data/site';
-
 interface Props {
   tone?: 'light' | 'dark';
   compact?: boolean;
@@ -11,15 +9,21 @@ const id = tone === 'light' ? 'contact' : 'quote';
 ---
 
 <form
-  action={`https://formsubmit.co/${site.email}`}
+  name="quote"
   method="POST"
+  action="/thank-you/"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  data-astro-reload
   class:list={['k-quote', tone === 'light' ? 'is-light' : 'is-dark']}
 >
-  <input type="hidden" name="_subject" value="New quote request - Alberta Elite Construction" />
-  <input type="hidden" name="_captcha" value="false" />
-  <input type="hidden" name="_template" value="table" />
-  <input type="text" name="_honey" class="k-quote-honey" tabindex="-1" autocomplete="off" />
-  <input type="hidden" name="_next" value={`${site.url}/thank-you/`} />
+  <input type="hidden" name="form-name" value="quote" />
+  <p class="k-quote-honey">
+    <label>
+      Leave this blank
+      <input name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
 
   <div class="k-quote-grid">
     <div class="k-field">
