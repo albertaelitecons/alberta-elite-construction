@@ -8,7 +8,7 @@ export const site = {
   phone: '+1 (587) 572-0282',
   phoneDisplay: '(587) 572-0282',
   phoneHref: 'tel:+15875720282',
-  email: 'sales@albertaec.ca',
+  email: 'Sales@albertaec.ca',
   address: {
     street: '3536 46 Ave SE',
     city: 'Calgary',
