@@ -1,0 +1,67 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { webpSrc } from '../data/seo';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  decoding?: 'async' | 'auto' | 'sync';
+  class?: string;
+  style?: string;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  decoding = 'async',
+  class: className,
+  style,
+  sizes,
+} = Astro.props;
+
+const webp = webpSrc(src);
+const hasWebp = /\.(jpe?g|png)$/i.test(src) && fs.existsSync(path.join(process.cwd(), 'public', webp));
+---
+
+{
+  hasWebp ? (
+    <picture>
+      <source type="image/webp" srcset={webp} sizes={sizes} />
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        fetchpriority={fetchpriority}
+        decoding={decoding}
+        class={className}
+        style={style}
+        sizes={sizes}
+      />
+    </picture>
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding={decoding}
+      class={className}
+      style={style}
+      sizes={sizes}
+    />
+  )
+}

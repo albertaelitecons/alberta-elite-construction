@@ -3,6 +3,7 @@ import HomeLayout from '../layouts/HomeLayout.astro';
 import LocationsSection from '../components/LocationsSection.astro';
 import PricingSection from '../components/PricingSection.astro';
 import ServicesSection from '../components/ServicesSection.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 import { site } from '../data/site';
 import { googleReviews, googleReviewStats } from '../data/reviews';
 import { categoryLabel, portfolio } from '../data/portfolio';
@@ -58,11 +59,14 @@ const works = [0, 6, 23, 25, 16, 4]
       {
         slides.map((slide, index) => (
           <div class:list={['k-hero-slide', index === 0 && 'is-active is-initial']} data-slide={index}>
-            <img
+            <OptimizedImage
               src={slide.image}
               alt={slide.alt}
+              width={1280}
+              height={720}
               loading={index === 0 ? 'eager' : 'lazy'}
               fetchpriority={index === 0 ? 'high' : 'auto'}
+              sizes="100vw"
             />
           </div>
         ))
@@ -152,7 +156,7 @@ const works = [0, 6, 23, 25, 16, 4]
   </section>
 
   <section class="k-promo">
-    <img src="/images/hero/promo-kitchen-bw.jpg" alt="Finished Calgary kitchen renovation" />
+    <OptimizedImage src="/images/hero/promo-kitchen-bw.jpg" alt="Finished Calgary kitchen renovation" width={1280} height={720} loading="lazy" sizes="100vw" />
     <div class="k-promo-copy">
       <p class="k-kicker">Call now</p>
       <h2>Ready to start?<br />Call us today</h2>
@@ -176,7 +180,7 @@ const works = [0, 6, 23, 25, 16, 4]
         {
           works.map((item) => (
             <button type="button" class="k-works-card" aria-label={`View ${item.title}`}>
-              <img src={item.image} alt={item.alt} loading="lazy" />
+              <OptimizedImage src={item.image} alt={item.alt} width={800} height={1000} loading="lazy" sizes="(max-width: 700px) 50vw, 280px" />
               <span class="k-works-meta">
                 <small>{categoryLabel(item.category)}</small>
                 <strong>{item.title}</strong>
@@ -212,9 +216,13 @@ const works = [0, 6, 23, 25, 16, 4]
 
   <section class="k-elegance">
     <div class="k-elegance-media">
-      <img
+      <OptimizedImage
         src="/images/hero/elegance-kitchen.jpg"
         alt="Kitchen remodeling with island and custom cabinetry in Calgary"
+        width={1280}
+        height={900}
+        loading="lazy"
+        sizes="(max-width: 900px) 100vw, 55vw"
       />
     </div>
     <div class="k-elegance-copy">
@@ -281,7 +289,7 @@ const works = [0, 6, 23, 25, 16, 4]
       <a class="k-pill" href="/portfolio/">Explore our work →</a>
     </div>
     <div class="k-philosophy-media">
-      <img src="/images/hero/philosophy-feature-wall.jpg" alt="Living room feature wall and fireplace after a Calgary remodel" />
+      <OptimizedImage src="/images/hero/philosophy-feature-wall.jpg" alt="Living room feature wall and fireplace after a Calgary remodel" width={1280} height={900} loading="lazy" sizes="(max-width: 900px) 100vw, 50vw" />
     </div>
   </section>
 
@@ -299,7 +307,7 @@ const works = [0, 6, 23, 25, 16, 4]
   </section>
 
   <section class="k-closer">
-    <img src="/images/hero/promo-kitchen-bw.jpg" alt="" />
+    <OptimizedImage src="/images/hero/promo-kitchen-bw.jpg" alt="" width={1280} height={720} loading="lazy" sizes="100vw" />
     <div class="k-closer-copy">
       <p class="k-kicker">Start a project</p>
       <h2>Designing the home<br />you’ve always imagined.</h2>

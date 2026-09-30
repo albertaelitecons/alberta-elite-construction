@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/outfit";
+@import "@fontsource-variable/playfair-display";
 
 @theme {
   --color-brand: #f0781f;
@@ -10,8 +12,8 @@
   --color-charcoal-light: #2d2d2d;
   --color-surface: #f0f0f0;
   --color-surface-dark: #141414;
-  --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -567,7 +569,11 @@
 .kitchor-home {
   background: #111;
   color: #fff;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
+}
+
+.kitchor-home picture {
+  display: contents;
 }
 
 .k-wrap {
@@ -643,7 +649,7 @@
 
 .k-hero-copy h1 {
   margin: 0;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(40px, 6vw, 72px);
   font-weight: 400;
   line-height: 1.08;
@@ -759,7 +765,7 @@
 
 .k-years strong {
   display: block;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: 64px;
   font-weight: 500;
   line-height: 1;
@@ -831,7 +837,7 @@
 .k-philosophy-copy h2,
 .k-closer-copy h2 {
   margin: 0 0 18px;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 400;
   line-height: 1.15;
@@ -877,7 +883,7 @@
 
 .k-services-head h2 {
   margin: 0;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 400;
   letter-spacing: -0.03em;
@@ -1350,7 +1356,7 @@ a.k-feature-card:hover h3 {
 
 .k-pricing h2 {
   margin: 0 0 8px;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(36px, 5vw, 56px);
   font-weight: 400;
   letter-spacing: -0.03em;
@@ -1374,7 +1380,7 @@ a.k-feature-card:hover h3 {
 
 .k-pricing h3 {
   margin: 0 0 22px;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -1711,7 +1717,7 @@ a.k-feature-card:hover h3 {
   display: block;
   margin-bottom: 12px;
   color: rgba(240, 120, 31, 0.7);
-  font-family: Playfair Display, Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-size: 42px;
   line-height: 1;
 }
@@ -2232,7 +2238,7 @@ a.k-step-head:hover h3 {
 .kitchor-home main h2,
 .kitchor-home main h3,
 .kitchor-home main h4 {
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   text-transform: none;
   letter-spacing: -0.03em;
   font-weight: 400;
@@ -2698,7 +2704,7 @@ a.k-step-head:hover h3 {
   border-radius: 0;
   background: transparent;
   color: inherit;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: 16px;
   letter-spacing: -0.02em;
   line-height: 1.4;
@@ -3123,7 +3129,7 @@ a.k-step-head:hover h3 {
 
 .folio-intro-copy h1 {
   margin: 0;
-  font-family: Outfit, ui-sans-serif, system-ui, sans-serif;
+  font-family: "Outfit Variable", Outfit, ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(52px, 8vw, 104px);
   font-weight: 400;
   line-height: 0.88;
@@ -3133,7 +3139,7 @@ a.k-step-head:hover h3 {
 
 .folio-intro-copy h1 em {
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-style: italic;
   font-weight: 500;
   color: #f0781f;
@@ -3171,7 +3177,7 @@ a.k-step-head:hover h3 {
 
 .folio-ledger dd {
   margin: 6px 0 0;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-size: 28px;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -3308,7 +3314,7 @@ a.k-step-head:hover h3 {
 
 .folio-rail-index b {
   color: #f0781f;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-weight: 500;
   font-size: 18px;
 }
@@ -3342,7 +3348,7 @@ a.k-step-head:hover h3 {
 }
 
 .folio-filter b {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0;
@@ -3473,7 +3479,7 @@ a.k-step-head:hover h3 {
   min-width: 2.2ch;
   padding-top: 2px;
   color: #f0781f;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-size: 18px;
   line-height: 1;
 }
@@ -3557,7 +3563,7 @@ a.k-step-head:hover h3 {
 
 .folio-lightbox-cap [data-folio-light-num] {
   color: #f0781f;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Playfair Display Variable", "Playfair Display", Georgia, serif;
   font-size: 18px;
 }
 

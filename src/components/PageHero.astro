@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
+
 interface Props {
   kicker?: string;
   title: string;
@@ -19,7 +21,7 @@ const {
 ---
 
 <section class="k-page-hero">
-  <img src={image} alt="" loading="eager" />
+  <OptimizedImage src={image} alt="" width={1280} height={720} loading="eager" fetchpriority="high" sizes="100vw" />
   <div class="k-page-hero-overlay"></div>
   <div class="k-hero-copy k-page-hero-copy">
     {kicker && <p class="k-kicker">{kicker}</p>}

@@ -9,6 +9,10 @@ export const site = {
   phoneDisplay: '(587) 572-0282',
   phoneHref: 'tel:+15875720282',
   email: 'Sales@albertaec.ca',
+  geo: {
+    latitude: 51.0126481,
+    longitude: -113.9833733,
+  },
   address: {
     street: '3536 46 Ave SE',
     city: 'Calgary',

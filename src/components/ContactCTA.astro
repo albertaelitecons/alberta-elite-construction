@@ -1,9 +1,10 @@
 ---
 import { site } from '../data/site';
+import OptimizedImage from './OptimizedImage.astro';
 ---
 
 <section class="k-closer">
-  <img src="/images/hero/promo-kitchen-bw.jpg" alt="" />
+  <OptimizedImage src="/images/hero/promo-kitchen-bw.jpg" alt="" width={1280} height={720} loading="lazy" sizes="100vw" />
   <div class="k-closer-copy">
     <p class="k-kicker">Get in touch</p>
     <h2>

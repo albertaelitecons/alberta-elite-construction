@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /thank-you/
+Disallow: /__forms.html
 
 Sitemap: https://albertaec.ca/sitemap-index.xml

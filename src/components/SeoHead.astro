@@ -1,0 +1,87 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { site } from '../data/site';
+import { webpSrc } from '../data/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage: string;
+  ogImageAlt?: string;
+  noIndex?: boolean;
+  preloadHero?: boolean;
+  heroImage?: string;
+  type?: 'website' | 'article';
+  datePublished?: string;
+  dateModified?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogImageAlt = 'Alberta Elite Construction project in Calgary',
+  noIndex = false,
+  preloadHero = !noIndex,
+  heroImage = ogImage,
+  type = 'website',
+  datePublished,
+  dateModified,
+} = Astro.props;
+
+const ogImageUrl = new URL(ogImage, site.url).href;
+const robots = noIndex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const webp = webpSrc(heroImage);
+const hasWebp = /\.(jpe?g|png)$/i.test(heroImage) && fs.existsSync(path.join(process.cwd(), 'public', webp));
+const preloadHref = hasWebp ? webp : heroImage;
+const preloadType = hasWebp ? 'image/webp' : heroImage.endsWith('.png') ? 'image/png' : 'image/jpeg';
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content={site.keywords.join(', ')} />
+<meta name="author" content={site.name} />
+<meta name="robots" content={robots} />
+<meta name="googlebot" content={robots} />
+<link rel="canonical" href={canonical} />
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<link rel="icon" type="image/png" href="/logo.png" />
+<link rel="apple-touch-icon" href="/logo.png" />
+<meta name="theme-color" content="#111111" />
+<meta name="format-detection" content="telephone=yes" />
+<meta name="geo.region" content="CA-AB" />
+<meta name="geo.placename" content="Calgary" />
+<meta name="geo.position" content={`${site.geo.latitude};${site.geo.longitude}`} />
+<meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_CA" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:secure_url" content={ogImageUrl} />
+<meta property="og:image:alt" content={ogImageAlt} />
+<meta property="og:image:width" content="1280" />
+<meta property="og:image:height" content="720" />
+<meta property="og:image:type" content={ogImage.endsWith('.png') ? 'image/png' : 'image/jpeg'} />
+{datePublished && <meta property="article:published_time" content={datePublished} />}
+{dateModified && <meta property="article:modified_time" content={dateModified} />}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
+{
+  preloadHero && (
+    <link rel="preload" as="image" href={preloadHref} type={preloadType} fetchpriority="high" />
+  )
+}

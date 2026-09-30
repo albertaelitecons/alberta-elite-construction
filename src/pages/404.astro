@@ -2,7 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout path="/404/" title="Page Not Found | Alberta Elite Construction">
+<BaseLayout
+  path="/404/"
+  title="Page Not Found | Alberta Elite Construction"
+  description="This page could not be found. Return to Alberta Elite Construction for Calgary remodeling, garages, basements, and more."
+  noIndex
+  preloadHero={false}
+>
   <section class="k-page-plain">
     <div class="k-wrap">
       <p class="k-kicker k-kicker-dark">Error</p>

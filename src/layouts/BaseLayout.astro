@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
-import HeadAssets from '../components/HeadAssets.astro';
+import { breadcrumbsForPath, type Crumb } from '../data/seo';
+import { buildPageGraph } from '../data/schema';
+import SeoHead from '../components/SeoHead.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Footer from '../components/Footer.astro';
-import LocalBusinessSchema from '../components/LocalBusinessSchema.astro';
 import ScrollTop from '../components/ScrollTop.astro';
 
 interface Props {
@@ -12,7 +13,15 @@ interface Props {
   description?: string;
   path?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  heroImage?: string;
   bodyClass?: string;
+  noIndex?: boolean;
+  preloadHero?: boolean;
+  pageType?: 'website' | 'article';
+  datePublished?: string;
+  dateModified?: string;
+  breadcrumbs?: Crumb[];
 }
 
 const {
@@ -20,40 +29,49 @@ const {
   description = site.description,
   path = '/',
   ogImage = '/images/hero/hero-living-room.jpg',
+  ogImageAlt = 'Alberta Elite Construction remodeling project in Calgary',
+  heroImage,
   bodyClass,
+  noIndex = false,
+  preloadHero,
+  pageType = 'website',
+  datePublished,
+  dateModified,
+  breadcrumbs,
 } = Astro.props;
 
 const canonical = new URL(path, site.url).href;
-const ogImageUrl = new URL(ogImage, site.url).href;
+const crumbs = breadcrumbs ?? breadcrumbsForPath(path, title);
+const schema = buildPageGraph({
+  canonical,
+  title,
+  description,
+  path,
+  ogImage,
+  breadcrumbs: crumbs,
+  datePublished,
+  dateModified,
+  pageType,
+});
 ---
 
 <!doctype html>
 <html lang="en-CA">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content={site.keywords.join(', ')} />
-    <link rel="canonical" href={canonical} />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content="en_CA" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="geo.region" content="CA-AB" />
-    <meta name="geo.placename" content="Calgary" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <HeadAssets />
-    <LocalBusinessSchema />
+    <SeoHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
+      heroImage={heroImage ?? ogImage}
+      noIndex={noIndex}
+      preloadHero={preloadHero ?? !noIndex}
+      type={pageType}
+      datePublished={datePublished}
+      dateModified={dateModified}
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
   <body class:list={['kitchor-home', bodyClass]}>
     <SiteHeader currentPath={path} overlay />

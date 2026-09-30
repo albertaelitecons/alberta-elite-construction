@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
+
 export type PriceItem = {
   title: string;
   price: string;
@@ -40,7 +42,7 @@ const {
 
 <section class="k-pricing">
   <div class="k-pricing-media">
-    <img src={image} alt={imageAlt} />
+    <OptimizedImage src={image} alt={imageAlt} width={1280} height={900} loading="lazy" sizes="(max-width: 900px) 100vw, 50vw" />
   </div>
   <div class="k-pricing-copy">
     <h2>{title}</h2>

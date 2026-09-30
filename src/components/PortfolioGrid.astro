@@ -1,6 +1,7 @@
 ---
 import { categoryLabel, portfolio, portfolioCategories } from '../data/portfolio';
 import SectionHeading from './SectionHeading.astro';
+import OptimizedImage from './OptimizedImage.astro';
 
 interface Props {
   dark?: boolean;
@@ -92,11 +93,13 @@ const counts = Object.fromEntries(
               data-category-label={categoryLabel(item.category)}
             >
               <span class="folio-frame">
-                <img
+                <OptimizedImage
                   src={item.image}
                   alt={item.alt}
+                  width={800}
+                  height={1000}
                   loading={index < 4 ? 'eager' : 'lazy'}
-                  decoding="async"
+                  sizes="(max-width: 700px) 50vw, 280px"
                 />
                 <span class="folio-marks" aria-hidden="true">
                   <i></i>

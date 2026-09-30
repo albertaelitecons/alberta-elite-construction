@@ -27,6 +27,7 @@ const images: Record<BlogPost['category'], string> = {
   'deck-installation': '/images/hero/about-hero.jpg',
   'fence-installation': '/images/services/fence.jpg',
 };
+const heroImage = images[post.category];
 ---
 
 <BaseLayout
@@ -34,13 +35,22 @@ const images: Record<BlogPost['category'], string> = {
   path={`/blog/detail/${post.slug}/`}
   title={`${post.title} | ${site.name}`}
   description={post.excerpt}
-  ogImage={images[post.category]}
+  ogImage={heroImage}
+  pageType="article"
+  datePublished={post.date}
+  dateModified={post.date}
+  breadcrumbs={[
+    { name: 'Home', href: '/' },
+    { name: 'Blog', href: '/blog/' },
+    { name: post.categoryLabel, href: category?.href ?? '/blog/' },
+    { name: post.title, href: `/blog/detail/${post.slug}/` },
+  ]}
 >
   <PageHero
     kicker={post.categoryLabel}
     title={post.title}
     subtitle={formatBlogDate(post.date)}
-    image={images[post.category]}
+    image={heroImage}
   />
 
   <section class="k-page-section">
