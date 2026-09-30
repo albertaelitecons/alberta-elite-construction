@@ -5,9 +5,9 @@ export const site = {
   description:
     'Calgary construction company for garage development, basement development, legal suites, decks, and fences. Licensed general contractor serving Calgary and surrounding areas.',
   url: 'https://albertaec.ca',
-  phone: '+1 (587) 572-0282',
-  phoneDisplay: '(587) 572-0282',
-  phoneHref: 'tel:+15875720282',
+  phone: '+1 (587) 332-2255',
+  phoneDisplay: '(587) 332-2255',
+  phoneHref: 'tel:+15873322255',
   email: 'Sales@albertaec.ca',
   geo: {
     latitude: 51.0126481,
