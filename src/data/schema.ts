@@ -1,6 +1,7 @@
 import { googleReviews, googleReviewStats } from './reviews';
 import { locations } from './locations';
 import { serviceLinks, site } from './site';
+import { serviceAreaServed, serviceSchemas } from './serviceSchema';
 import type { Crumb } from './seo';
 
 type PageSchemaInput = {
@@ -175,7 +176,42 @@ export function buildPageGraph({
   const graph: Record<string, unknown>[] = [website, business, webPage, breadcrumb];
 
   const service = serviceLinks.find((item) => item.href === path);
-  if (service) {
+  const serviceDetail = serviceSchemas[path];
+  if (serviceDetail) {
+    const serviceNode: Record<string, unknown> = {
+      '@type': 'Service',
+      '@id': `${canonical}#service`,
+      name: serviceDetail.name,
+      serviceType: serviceDetail.serviceType,
+      description: serviceDetail.description,
+      url: canonical,
+      image: ogImageUrl,
+      provider: { '@id': businessId },
+      areaServed: serviceAreaServed,
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: serviceDetail.catalogName,
+        itemListElement: serviceDetail.catalog.map((name) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name },
+        })),
+      },
+    };
+    if (serviceDetail.offer) {
+      serviceNode.offers = {
+        '@type': 'Offer',
+        name: serviceDetail.offer.name,
+        priceSpecification: {
+          '@type': 'PriceSpecification',
+          minPrice: serviceDetail.offer.minPrice,
+          ...(serviceDetail.offer.maxPrice ? { maxPrice: serviceDetail.offer.maxPrice } : {}),
+          priceCurrency: 'CAD',
+        },
+      };
+    }
+    graph.push(serviceNode);
+    webPage.mainEntity = { '@id': `${canonical}#service` };
+  } else if (service) {
     const serviceNode = {
       '@type': 'Service',
       '@id': `${canonical}#service`,

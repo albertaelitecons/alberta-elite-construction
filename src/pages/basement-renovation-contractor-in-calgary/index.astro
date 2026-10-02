@@ -1,0 +1,344 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PricingSection from '../../components/PricingSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const mapEmbed =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1961.0855376327088!2d-113.9833733!3d51.01264809999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2688c2b9fb67b215%3A0x323243fec9bc18a0!2sAlberta%20Elite%20Construction%20-%20Home%20Remodeling%20Calgary!5e1!3m2!1sen!2s!4v1790969951748!5m2!1sen!2s';
+
+const faqs = [
+  {
+    question: 'How much does it cost to renovate a basement in Calgary?',
+    answer:
+      'Our typical starting prices for finished Calgary basements run from CA$45 to $65 per sq ft for a basic finish, $65 to $95 per sq ft for a mid-range finish with a bedroom, bathroom, or wet bar, and $95 to $150+ per sq ft for premium work such as a kitchen or separate entrance. Renovations can add demolition, asbestos abatement in older homes, and repairs to problems hidden behind existing walls. We quote after seeing the space, and the consultation is free.',
+  },
+  {
+    question: 'Do I need a permit to renovate a finished basement in Calgary?',
+    answer:
+      'It depends on the work. Painting, new flooring, and replacing fixtures in the same spot usually do not need a permit. Moving or removing walls, adding or enlarging windows, adding a basement entry, and new electrical or plumbing work do. Alberta Elite Construction files every permit your project needs.',
+  },
+  {
+    question: 'Can you fix basement work that was done without permits?',
+    answer:
+      'Yes. The City of Calgary allows permits to be applied for after work is complete. Hidden wiring and plumbing must be reviewed by a licensed contractor, and the inspector may ask for drywall to be removed. We open what is needed, correct deficiencies, and close the permits.',
+  },
+  {
+    question: 'Can I add a kitchen to my basement in Calgary?',
+    answer:
+      'Only as a secondary suite. If your basement will have both a kitchen and a bathroom, the City requires secondary suite permits, even if you never plan to rent it. A wet bar without a stove, cooktop, oven, or microwave can be part of a regular basement renovation.',
+  },
+  {
+    question: 'Do I need to test for asbestos before renovating my basement?',
+    answer:
+      'If your home was built before 1990, yes. Materials such as drywall joint compound, vinyl floor tiles, and vermiculite insulation from that era may contain asbestos, and the City asks for an asbestos abatement form with permit applications for those homes. We flag the materials that need testing before any demolition starts.',
+  },
+];
+---
+
+<BaseLayout
+  path="/basement-renovation-contractor-in-calgary/"
+  title="Basement Renovation Contractor in Calgary - Alberta Elite"
+  description={`Basement renovation contractor in Calgary, AB for new layouts, bathrooms, egress windows, and permit fixes. Call ${site.phoneDisplay}.`}
+  ogImage="/images/hero/elegance-basement.jpg"
+  ogImageAlt="Renovated basement suite with a kitchen island and living area"
+>
+  <PageHero
+    kicker="Basement renovation"
+    title="Basement Renovation Contractor in Calgary, AB"
+    subtitle="Your basement is finished. It just does not work anymore."
+    image="/images/hero/elegance-basement.jpg"
+  />
+
+  <PageIntro kicker="Renovation contractor" title="When the lower level needs more than paint">
+    <p class="k-lead">
+      Maybe it is wood paneling and a drop ceiling from another decade, a bedroom too dark to sleep
+      in, or carpet that never smelled right after the water heater let go.
+    </p>
+    <p class="k-lead">
+      Alberta Elite Construction is the basement renovation contractor Calgary homeowners call when
+      the lower level needs more than paint. For more than 15 years, our crew has opened up cramped
+      layouts, rebuilt tired bathrooms, enlarged bedroom windows, and corrected old work that never
+      saw a permit. We take your existing basement down to what is worth keeping and rebuild the
+      rest properly.
+    </p>
+    <p class="k-lead">
+      Call Alberta Elite Construction at <a href={site.phoneHref}>{site.phoneDisplay}</a> or
+      <a href="/contact/">request your free consultation online</a>. We answer from 6:00 AM to
+      11:00 PM, and you get fixed written pricing before any wall comes down.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="What we do"
+    title="What does a basement renovation contractor do?"
+    image="/images/services/basement.jpg"
+    imageAlt="Finished Calgary basement with living room, fireplace, and wet bar"
+    media="start"
+  >
+    <p>
+      A basement renovation contractor updates or rebuilds a basement that is already finished. The
+      work can include moving or removing walls, replacing bathrooms, enlarging windows for egress,
+      new flooring, ceilings, and lighting, repairing water damage, and bringing past unpermitted
+      work up to code with City of Calgary permits and inspections.
+    </p>
+    <p>
+      Starting from bare concrete instead? That is a
+      <a href="/basement-development-in-calgary/">basement development</a> project, and we build
+      those too.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="Warning signs"
+    title="Signs your finished basement needs a renovation"
+    columns={3}
+    items={[
+      {
+        title: 'A layout that fights you',
+        text: 'Small rooms, a hallway to nowhere, or a furnace room sitting in the middle of the best open space.',
+      },
+      {
+        title: 'Dated finishes',
+        text: 'Paneling, popcorn or drop ceilings, worn carpet, and dim fluorescent lighting.',
+      },
+      {
+        title: 'A bedroom that is not legally a bedroom',
+        text: 'The window is too small to climb out of, which matters for safety and when you sell.',
+      },
+      {
+        title: 'An old or missing bathroom',
+        text: 'A cramped shower, failing fixtures, or no bathroom at all on the lower level.',
+      },
+      {
+        title: 'Past water damage',
+        text: 'Stained drywall, swollen baseboards, or a musty smell after a leak or sewer backup.',
+      },
+      {
+        title: 'Work done without permits',
+        text: 'A previous owner finished the space themselves, and nobody knows what sits behind the drywall.',
+      },
+      {
+        title: 'Plans for a suite',
+        text: 'You want rental income or room for family, and the current layout cannot get there.',
+      },
+    ]}
+  >
+    <p>
+      A basement finished 20 or 30 years ago was built to the expectations of its time. Families
+      change, codes change, and materials wear out. If two or more of these sound familiar, a
+      cosmetic touch-up will only hide the problem for a while. A proper renovation fixes the cause.
+    </p>
+  </FeatureGrid>
+
+  <FeatureGrid
+    kicker="Included"
+    title="Basement renovation services in Calgary"
+    items={[
+      {
+        title: 'Layout changes and wall removal',
+        text: 'We take down walls that chop the basement into small rooms and reframe the space around how you live now. Where a wall carries load, we plan the beam and post work with an engineer before demolition. Moving or removing walls requires a City of Calgary building permit, and we handle that application for you.',
+      },
+      {
+        title: 'Basement bathroom renovation',
+        text: 'We gut and rebuild outdated basement bathrooms with new waterproofing, tile, fixtures, ventilation, and lighting. If your basement has no bathroom yet, we tie a new one into the existing drain and supply lines under a plumbing permit. Bathroom doorways are framed at a minimum of 30 inches wide to meet City guidance.',
+        href: '/bathroom-remodeling-in-calgary/',
+      },
+      {
+        title: 'Egress window upgrades for existing bedrooms',
+        text: 'Many older basement bedrooms have windows far too small for emergency escape. We cut or enlarge foundation openings, install compliant windows, and build new wells. A bedroom window needs an unobstructed opening of at least 0.35 m² with no dimension under 380 mm. Larger foundation cuts need review by an Alberta-registered engineer, and we coordinate that step.',
+      },
+      {
+        title: 'Flooring, ceilings, and lighting updates',
+        text: 'We replace worn carpet with durable flooring, take down drop ceilings and paneling, and add pot lights and new circuits. Old drop ceilings often hide ducts and pipes, so we plan bulkheads to keep as much ceiling height as possible.',
+      },
+      {
+        title: 'Water damage repair and moisture fixes',
+        text: 'After a leak or sewer backup, wet drywall, insulation, and flooring need to come out, not get painted over. We remove damaged materials, find and correct the source, and rebuild with moisture-conscious wall assemblies suited to Alberta foundations.',
+      },
+      {
+        title: 'Fixing unpermitted basement work',
+        text: 'If a previous owner finished the basement without permits, the City lets you apply for permits after the fact. Concealed wiring and plumbing must then be checked by a licensed contractor, and an inspector may ask for drywall to be opened. We manage that process, open what needs opening, and correct anything that fails.',
+      },
+      {
+        title: 'Converting a finished basement to a legal suite',
+        text: 'A developed basement can often become a legal secondary suite with a kitchen, private entrance, smoke-tight separation, and interconnected smoke and carbon monoxide alarms. We assess what your current basement already has, price only the upgrades it needs, and file the suite permits.',
+        href: '/legal-suite-in-calgary/',
+      },
+      {
+        title: 'Wet bars and entertainment spaces',
+        text: 'A wet bar with a sink and fridge adds a lot to a family room. In Calgary, a basement wet bar cannot include a cooking appliance such as a stove, cooktop, oven, or microwave unless the space is permitted as a suite. We design the bar to fit the rule you are building under.',
+      },
+    ]}
+  >
+    <p>
+      Every renovation starts with what is already there. We assess the framing, wiring, plumbing,
+      and moisture conditions behind your existing finishes, then plan the new space around what the
+      house can support.
+    </p>
+  </FeatureGrid>
+
+  <PricingSection
+    title="Permit Guide"
+    subtitle="Based on the City of Calgary's home renovation guidance"
+    lead="The City of Calgary separates cosmetic updates from work that changes structure, openings, or systems. For homes built before 1990, the building permit application also needs an asbestos abatement form. We prepare the drawings and forms, file the applications, and book every inspection."
+    heading="Which basement renovations need a permit in Calgary?"
+    image="/images/hero/hero-basement.jpg"
+    imageAlt="Basement framing and stairs before drywall"
+    items={[
+      { title: 'Painting', price: 'Usually no permit' },
+      { title: 'New flooring', price: 'Usually no permit' },
+      { title: 'Replacing fixtures in the same spot', price: 'Usually no permit' },
+      { title: 'Moving or removing walls', price: 'Building permit' },
+      { title: 'Adding or enlarging windows', price: 'Permit required' },
+      { title: 'Adding a basement entry', price: 'Permit required' },
+      { title: 'New electrical or plumbing work', price: 'Permit required' },
+    ]}
+  />
+
+  <ProcessSteps
+    title="Our basement renovation process"
+    steps={[
+      {
+        title: 'Assessment',
+        text: 'We walk your basement, look behind access panels, check for moisture, and confirm what was permitted.',
+        detail: 'For homes built before 1990, we flag the materials that need asbestos testing before anything is disturbed.',
+      },
+      {
+        title: 'Design and written price',
+        text: 'You receive a layout and finish plan with fixed written pricing.',
+        detail: 'The price you approve is the price you pay, and any change gets written down before work proceeds.',
+      },
+      {
+        title: 'Permits',
+        text: 'We file the City of Calgary building and trade permit applications that your scope requires.',
+      },
+      {
+        title: 'Demolition and rebuild',
+        text: 'We protect the rest of the house and remove what is coming out.',
+        detail: 'Framing, trades, insulation, drywall, and finishes then run as one sequence.',
+      },
+      {
+        title: 'Final walk-through',
+        text: 'We walk the finished basement with you and close every outstanding item before final payment.',
+      },
+    ]}
+  />
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Older and newer homes</p>
+      <h2 class="k-why-title">Renovating older and newer basements across Calgary</h2>
+      <p class="k-works-lead">
+        The age of your home shapes the renovation as much as your design does.
+      </p>
+      <div class="k-guarantee-grid is-2">
+        <article class="k-info-card">
+          <h3>Homes built before 1990</h3>
+          <p>
+            In established neighbourhoods such as Haysboro, Acadia, Brentwood, and Thorncliffe, many
+            basements were finished decades ago. Those homes predate 1990, so drywall mud, vinyl
+            floor tiles, and some insulation can contain asbestos, and Alberta guidance treats
+            pre-1990 buildings as higher risk. Testing comes before demolition, not after.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Homes permitted since November 2016</h3>
+          <p>
+            If the original building permit for your house was applied for on or after November 1,
+            2016, renovations must meet the energy efficiency requirements in Section 9.36 of the
+            Alberta Building Code. That affects insulation values and mechanical choices, and we spec
+            them correctly from the start.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Older basement suites</h3>
+          <p>
+            The City's Secondary Suite Amnesty Program runs until December 31, 2026 for suites built
+            before March 12, 2018, and it waives development permit charges and registry fees. If
+            your finished basement already has a kitchen and bathroom, renovating it into a
+            <a href="/legal-suite-in-calgary/">legal suite</a> now can save you money.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Where we work</h3>
+          <p>
+            Our shop is in southeast Calgary, and we renovate basements within a 20-mile radius
+            covering every quadrant of the city plus Chestermere, Langdon, Shepard, De Winton,
+            Conrich, Indus, and Rocky View County.
+          </p>
+          <p>
+            {site.name}, {site.address.full}. Phone:
+            <a href={site.phoneHref}>{site.phoneDisplay}</a>. Email:
+            <a href={`mailto:${site.email}`}>{site.email}</a>. Hours: {site.hours.display}.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <StatsRow />
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Why choose us</p>
+      <h2 class="k-why-title">Why choose Alberta Elite Construction as your basement renovation contractor</h2>
+      <p class="k-works-lead">
+        Renovation is harder than new development because you are working around someone else's
+        decisions. Here is what you get with our team.
+      </p>
+      <div class="k-guarantee-grid">
+        <article class="k-info-card">
+          <h3>One contractor for the whole job</h3>
+          <p>
+            Demolition, framing, electrical, plumbing, drywall, and finishing scheduled as one
+            project with one point of contact. When the work reaches upstairs, the same team handles
+            <a href="/home-remodeling-in-calgary/">home remodeling</a> too.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Fixed written pricing</h3>
+          <p>Every change is approved in writing first.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Permit handling</h3>
+          <p>Including after-the-fact permits for past unpermitted work.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>2-year workmanship warranty</h3>
+          <p>
+            If a deficiency tied to our labour appears within two years, we return and correct it at
+            no charge.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Licensed and insured</h3>
+          <p>Licensed and insured for residential contracting in Alberta.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Code-compliant construction</h3>
+          <p>Built to the Alberta Building Code and City of Calgary permit requirements.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <ServicesSection follow />
+  <LocationsSection mapSrc={mapEmbed} mapReferrerPolicy="strict-origin-when-cross-origin" />
+  <FAQ title="Frequently Asked Questions About Basement Renovation in Calgary" items={faqs} />
+  <ContactCTA>
+    <Fragment slot="title">Renovate your Calgary basement with Alberta Elite Construction</Fragment>
+    You have already invested in finishing your basement once. The next renovation should fix what
+    is not working, meet current code, and last. We will look at your basement, tell you what is
+    worth keeping, and send you a clear written quote.
+  </ContactCTA>
+</BaseLayout>

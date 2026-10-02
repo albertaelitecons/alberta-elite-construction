@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PageSplit from '../../components/PageSplit.astro';
+import FeatureGrid from '../../components/FeatureGrid.astro';
+import ProcessSteps from '../../components/ProcessSteps.astro';
+import StatsRow from '../../components/StatsRow.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import LocationsSection from '../../components/LocationsSection.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactCTA from '../../components/ContactCTA.astro';
+import { site } from '../../data/site';
+
+const mapEmbed =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1961.0855376327088!2d-113.9833733!3d51.01264809999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2688c2b9fb67b215%3A0x323243fec9bc18a0!2sAlberta%20Elite%20Construction%20-%20Home%20Remodeling%20Calgary!5e1!3m2!1sen!2s!4v1790969951748!5m2!1sen!2s';
+
+const faqs = [
+  {
+    question: 'Do you handle building permits in Calgary?',
+    answer:
+      'Yes. We prepare the drawings, file the City of Calgary building, electrical, and plumbing permit applications your project needs, and book every required inspection. Where a project needs a development permit, such as some legal suites, we handle that application as well.',
+  },
+  {
+    question: 'Is Alberta Elite Construction licensed and insured?',
+    answer:
+      'Yes. We hold business licensing and liability insurance for residential contracting in Alberta. You are welcome to ask for proof of both before you sign, and we recommend doing that with any contractor you consider.',
+  },
+  {
+    question: 'How long does a construction project take in Calgary?',
+    answer:
+      "It depends on the project and the permits. Most garage builds take several weeks, and a standard basement suite usually takes 8 to 14 weeks of construction once permits are approved. Projects that need a development permit take longer, because the City's planning review alone can run 10 to 12 weeks. We give you a written schedule before work starts.",
+  },
+  {
+    question: 'Do you offer a warranty on your work?',
+    answer:
+      'Yes. Every project carries a 2-year workmanship warranty. If a deficiency related to our labour appears within two years, we return and correct it at no charge. Manufacturer warranties on materials and equipment apply on top of that.',
+  },
+  {
+    question: 'What areas does your construction company serve?',
+    answer:
+      'We work throughout Calgary and within a 20-mile radius of our southeast Calgary shop, including Chestermere, Langdon, Shepard, De Winton, Conrich, Indus, and Rocky View County. If you are not sure whether we reach your address, call and we will confirm.',
+  },
+];
+---
+
+<BaseLayout
+  path="/construction-company-in-calgary/"
+  title="Construction Company in Calgary - Alberta Elite Construction"
+  description="Calgary construction company for garages, basements, legal suites, decks, and renovations. Get in touch with Alberta Elite now!"
+  ogImage="/images/hero/elegance-renovation.jpg"
+  ogImageAlt="Two-storey home under construction with scaffolding and an attached garage"
+>
+  <PageHero
+    kicker="Construction company"
+    title="Construction Company in Calgary, AB"
+    subtitle="One company plans the job, files the permits, runs the trades, and stands behind the work."
+    image="/images/hero/elegance-renovation.jpg"
+  />
+
+  <PageIntro kicker="Residential construction" title="Closing the gaps between trades">
+    <p class="k-lead">
+      Most home projects in Calgary do not go wrong on the big decisions. They go wrong in the gaps:
+      the framer finished, but the electrician is three weeks out, the permit never got filed, or the
+      quote that looked cheap grew every week after the deposit cleared.
+    </p>
+    <p class="k-lead">
+      Alberta Elite Construction is a residential construction company in Calgary that closes those
+      gaps. For more than 15 years, our team has built detached garages, developed basements,
+      created legal suites, installed decks and fences, and remodeled kitchens and bathrooms across
+      Calgary and the surrounding communities.
+    </p>
+    <p class="k-lead">
+      Call Alberta Elite Construction at <a href={site.phoneHref}>{site.phoneDisplay}</a> or
+      <a href="/contact/">request your free consultation online</a>. We answer from 6:00 AM to
+      11:00 PM, and every quote comes as fixed written pricing.
+    </p>
+  </PageIntro>
+
+  <PageSplit
+    kicker="What we do"
+    title="What does a residential construction company do?"
+    image="/images/services/garage.jpg"
+    imageAlt="Finished Calgary garage with storage, lighting, and a coated floor"
+    media="start"
+  >
+    <p>
+      A residential construction company plans, permits, and builds projects on your home and
+      property. That includes new structures such as garages and decks, interior work such as
+      basements, suites, kitchens, and bathrooms, and repairs. The company coordinates every trade,
+      manages City permits and inspections, and is accountable for the finished result.
+    </p>
+  </PageSplit>
+
+  <FeatureGrid
+    kicker="One team"
+    title="Why Calgary homeowners hire one construction company instead of five trades"
+    columns={3}
+    items={[
+      {
+        title: 'One schedule',
+        text: 'Concrete, framing, roofing, electrical, plumbing, and finishing follow one plan instead of five separate calendars.',
+      },
+      {
+        title: 'One point of contact',
+        text: 'You call one number when you have a question, not a list of subcontractors.',
+      },
+      {
+        title: 'One price',
+        text: 'The quote covers the full scope, and changes get written down before work proceeds.',
+      },
+      {
+        title: 'One warranty',
+        text: 'If something tied to our labour fails within two years, you know exactly who fixes it.',
+      },
+      {
+        title: 'Permits handled',
+        text: 'The City of Calgary requires separate building, electrical, and plumbing permits for many projects, and we file and track all of them.',
+      },
+      {
+        title: 'The licensing risk is real',
+        text: 'The City of Calgary notes that contractors need a valid City business licence to pull construction and trade permits, and the Government of Alberta requires contractors who take payments before work is complete to be licensed as prepaid contractors. A builder who skips those steps leaves the liability with you.',
+      },
+    ]}
+  >
+    <p>
+      Hiring each trade yourself can look cheaper on paper. In practice, you become the project
+      manager. You chase schedules, sort out who caused a problem, and figure out which permit each
+      trade needs. A single construction company carries that load for you.
+    </p>
+  </FeatureGrid>
+
+  <FeatureGrid
+    kicker="Services"
+    title="Construction services we offer in Calgary"
+    items={[
+      {
+        title: 'Custom garage construction',
+        text: 'We build detached single, double, and triple garages from the slab up, including framing, shingle roofing, soffits and gutters, vinyl siding, doors and openers, an electrical panel, and LED lighting. Foundations are planned for frost depth and drainage, and insulated and heating-ready options keep the space usable in January.',
+        href: '/garage-developments-in-calgary/',
+      },
+      {
+        title: 'Basement development and renovation',
+        text: 'We turn bare concrete into finished living space and rebuild older basements that no longer work. Framing, insulation, drywall, bathrooms, wet bars, flooring, lighting, and egress windows run as one job under City of Calgary permits.',
+        href: '/basement-development-in-calgary/',
+      },
+      {
+        title: 'Legal secondary suites',
+        text: 'We build basement and garage suites to Calgary code, including egress windows, fire separation, ventilation, sound control, and a private entrance. Parking, entries, and utilities are planned so the suite works as a real second home for tenants or family.',
+        href: '/legal-suite-in-calgary/',
+      },
+      {
+        title: 'Deck installation',
+        text: 'We build decks in pressure-treated wood, cedar, larch, and composite. Footings, ledger flashing, framing, railings, and stairs are built for Calgary frost, snow load, and drainage.',
+        href: '/deck-installation-in-calgary/',
+      },
+      {
+        title: 'Fence installation',
+        text: 'We install wood, PVC, chain link, and wildlife fencing with posts set to the right depth for frost. Property lines, grade changes, and neighbour access are checked before any post goes in the ground.',
+        href: '/fence-installation-in-calgary/',
+      },
+      {
+        title: 'Kitchen, bathroom, and home remodeling',
+        text: 'We remodel kitchens, bathrooms, and whole homes under one contractor. Cabinets, tile, electrical, and plumbing are scheduled as one job so the house feels planned, not patched together.',
+        href: '/home-remodeling-in-calgary/',
+      },
+      {
+        title: 'Roof repair',
+        text: 'We trace leaks, replace damaged shingles, and repair flashing built to handle freeze-thaw cycles, wind, and ice. Small patches and larger section repairs are quoted after we see the slope and access.',
+        href: '/roof-repair-in-calgary/',
+      },
+      {
+        title: 'Video surveillance installation',
+        text: 'We plan camera coverage around your entries and yard, mount cameras, run cable, and set up recording so you can see your property clearly in Calgary weather.',
+        href: '/video-surveillance-installation-in-calgary/',
+      },
+    ]}
+  >
+    <p>
+      Our work covers the projects Calgary homeowners ask for most, from new structures in the
+      backyard to full interior renovations. Already have a finished basement that no longer works?
+      Our <a href="/basement-renovation-contractor-in-calgary/">basement renovation</a> team rebuilds
+      it around how you live now.
+    </p>
+  </FeatureGrid>
+
+  <ProcessSteps
+    title="How our construction process works"
+    steps={[
+      {
+        title: 'Site visit',
+        text: 'We measure, check access, grade, utilities, and existing conditions, and talk through how you will use the finished space.',
+      },
+      {
+        title: 'Design and fixed written quote',
+        text: 'You approve a layout and a fixed price.',
+        detail: 'Permit needs are called out in the same document.',
+      },
+      {
+        title: 'Permits',
+        text: 'We prepare drawings and file the City of Calgary building and trade permit applications, then book the inspections.',
+      },
+      {
+        title: 'Construction',
+        text: 'Our crew runs every trade on one schedule.',
+        detail: 'Weather holds are communicated early so you always know the next site day.',
+      },
+      {
+        title: 'Walk-through',
+        text: 'We inspect the finished work with you and close every leftover item before final payment.',
+        detail: 'Labour is covered by our 2-year workmanship warranty.',
+      },
+    ]}
+  />
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Before you sign</p>
+      <h2 class="k-why-title">How to choose a construction company in Calgary</h2>
+      <p class="k-works-lead">
+        The City of Calgary recommends a few checks before you sign with any contractor. They are
+        worth doing with us too.
+      </p>
+      <div class="k-guarantee-grid">
+        <article class="k-info-card">
+          <h3>Check the licence</h3>
+          <p>
+            Contractors need a valid City of Calgary business licence to obtain construction and
+            trade permits.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Get it in writing</h3>
+          <p>
+            Your contract should list the scope, start and finish dates, materials, price, payment
+            schedule, and who is responsible for permits and inspections.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Ask for references</h3>
+          <p>
+            Call past clients and ask about quality, timing, budget, and how the project felt day to
+            day.
+          </p>
+        </article>
+        <article class="k-info-card">
+          <h3>Verify insurance</h3>
+          <p>Ask for a certificate showing the contractor's liability coverage.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Check your title before the final payment</h3>
+          <p>
+            A search through Alberta Land Titles shows whether any builder's lien was registered
+            against your home.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <PageSplit
+    kicker="Calgary conditions"
+    title="Building for Calgary's climate and neighbourhoods"
+    image="/images/hero/hero-garage.jpg"
+    imageAlt="Detached double garage with white siding and dark garage doors"
+    media="start"
+  >
+    <p>
+      Construction in Calgary has to handle deep frost, fast freeze-thaw swings, heavy snow, and
+      strong wind. That is why we set deck footings and fence posts for frost, build garages with
+      drainage and foundations planned from the start, and repair roofs with flashing details that
+      hold through ice.
+    </p>
+    <p>
+      The rules have changed in your favour too. Since the City moved its base residential district
+      to R-CG, many Calgary properties can hold both a secondary suite and a backyard suite. That
+      opens real options for a basement suite, a garage suite, or both on the same lot, and we help
+      you check what your property allows before you spend money on drawings.
+    </p>
+    <p>
+      Our shop sits in southeast Calgary. We work within a 20-mile radius that covers every quadrant
+      of the city plus Chestermere, Langdon, Shepard, De Winton, Conrich, Indus, and Rocky View
+      County.
+    </p>
+    <p>
+      {site.name}, {site.address.full}. Phone: <a href={site.phoneHref}>{site.phoneDisplay}</a>.
+      Email: <a href={`mailto:${site.email}`}>{site.email}</a>. Hours: {site.hours.display}.
+    </p>
+  </PageSplit>
+
+  <StatsRow />
+
+  <section class="k-why">
+    <div class="k-wrap">
+      <p class="k-kicker k-kicker-dark">Why choose us</p>
+      <h2 class="k-why-title">Why Calgary homeowners choose Alberta Elite Construction</h2>
+      <p class="k-works-lead">
+        Our motto sums up the standard: built to last, crafted to impress.
+      </p>
+      <div class="k-guarantee-grid">
+        <article class="k-info-card">
+          <h3>Fixed written pricing</h3>
+          <p>The price you approve is the price you pay.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>2-year workmanship warranty</h3>
+          <p>Our labour is covered, with a clear written claim process.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Permit handling</h3>
+          <p>From application to final inspection.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Code-compliant construction</h3>
+          <p>Built to the Alberta Building Code and City of Calgary requirements.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Licensed and insured</h3>
+          <p>Licensed and insured for residential contracting in Alberta.</p>
+        </article>
+        <article class="k-info-card">
+          <h3>Final walk-through</h3>
+          <p>Completed before final payment, so nothing is left unfinished.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <ServicesSection follow />
+  <LocationsSection mapSrc={mapEmbed} mapReferrerPolicy="strict-origin-when-cross-origin" />
+  <FAQ title="Frequently Asked Questions About Our Calgary Construction Company" items={faqs} />
+  <ContactCTA>
+    <Fragment slot="title">Start your project with a Calgary construction company you can hold accountable</Fragment>
+    Whether it is a garage, a basement, a suite, or a full remodel, you deserve one team that plans
+    it properly, prices it in writing, and finishes what it starts. We will visit your property,
+    talk through your plans, and send you a clear written quote.
+  </ContactCTA>
+</BaseLayout>

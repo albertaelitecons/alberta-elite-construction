@@ -3709,3 +3709,38 @@ a.k-step-head:hover h3 {
     transform: none;
   }
 }
+
+/* Five-step process rows (basement renovation and construction company pages) */
+@media (min-width: 900px) {
+  .k-process-track.is-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .k-process-steps.is-5 .k-process-bar {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+/* Centered lead under a .k-why section title (overrides the .k-why p margin reset) */
+.k-why .k-works-lead {
+  margin: -32px auto 40px;
+}
+
+/* Inline text links inside split copy and section leads */
+.k-elegance-copy p a,
+.k-philosophy-copy p a,
+.k-works-lead a {
+  color: #f0781f;
+}
+
+/* Review button below the homepage reviews */
+.k-reviews-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.k-reviews-cta .k-pill {
+  margin-top: 0;
+}

@@ -1,6 +1,14 @@
 ---
 import { site } from '../data/site';
 import { locationLinks } from '../data/locations';
+
+interface Props {
+  /** Optional Google Maps embed URL; defaults to the site-wide map. */
+  mapSrc?: string;
+  mapReferrerPolicy?: 'no-referrer-when-downgrade' | 'strict-origin-when-cross-origin';
+}
+
+const { mapSrc = site.mapEmbed, mapReferrerPolicy = 'no-referrer-when-downgrade' } = Astro.props;
 ---
 
 <section class="k-locations" id="locations">
@@ -33,9 +41,9 @@ import { locationLinks } from '../data/locations';
       <div class="k-locations-map">
         <iframe
           title="Alberta Elite Construction on Google Maps"
-          src={site.mapEmbed}
+          src={mapSrc}
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          referrerpolicy={mapReferrerPolicy}
           allowfullscreen
         ></iframe>
       </div>

@@ -1,4 +1,6 @@
 ---
+import { site } from '../data/site';
+
 export type FAQItem = { question: string; answer: string };
 
 interface Props {
@@ -8,9 +10,12 @@ interface Props {
 
 const { title = 'Frequently Asked Questions', items } = Astro.props;
 
+const pageUrl = new URL(Astro.url.pathname, site.url).href;
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  '@id': `${pageUrl}#faq`,
   mainEntity: items.map((item) => ({
     '@type': 'Question',
     name: item.question,

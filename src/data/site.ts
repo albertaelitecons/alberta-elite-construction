@@ -67,6 +67,11 @@ export const site = {
 
 export const serviceLinks = [
   {
+    href: '/construction-company-in-calgary/',
+    label: 'Construction Company',
+    desc: 'Residential construction in Calgary: garages, basements, suites, decks, fences, and remodels.',
+  },
+  {
     href: '/garage-developments-in-calgary/',
     label: 'Garage Development',
     desc: 'Custom detached garages, packages, and full-service builds.',
@@ -75,6 +80,11 @@ export const serviceLinks = [
     href: '/basement-development-in-calgary/',
     label: 'Basement Development',
     desc: 'Basement finishing, permits, framing, and complete development.',
+  },
+  {
+    href: '/basement-renovation-contractor-in-calgary/',
+    label: 'Basement Renovation Contractor',
+    desc: 'Renovations for finished basements: new layouts, bathrooms, egress windows, and permit fixes.',
   },
   {
     href: '/legal-suite-in-calgary/',

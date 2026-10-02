@@ -4,6 +4,7 @@ import LocationsSection from '../components/LocationsSection.astro';
 import PricingSection from '../components/PricingSection.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import OptimizedImage from '../components/OptimizedImage.astro';
+import ReviewWidget from '../components/ReviewWidget.astro';
 import { site } from '../data/site';
 import { googleReviews, googleReviewStats } from '../data/reviews';
 import { categoryLabel, portfolio } from '../data/portfolio';
@@ -236,7 +237,7 @@ const works = [0, 6, 23, 25, 16, 4]
     </div>
   </section>
 
-  <section class="k-reviews">
+  <section class="k-reviews" id="reviews">
     <div class="k-wrap">
       <p class="k-kicker k-kicker-dark">Google reviews</p>
       <h2>What our happy clients<br />say about us</h2>
@@ -275,6 +276,12 @@ const works = [0, 6, 23, 25, 16, 4]
       <p class="k-reviews-note">
         <a href={site.reviewsUrl} target="_blank" rel="noreferrer">Read all reviews on Google</a>
       </p>
+      <div class="k-reviews-cta">
+        <a id="rlgOpenPopup" class="k-pill k-pill-solid" href="/#reviews" data-astro-prefetch="false">
+          Leave us a review
+        </a>
+      </div>
+      <ReviewWidget />
     </div>
   </section>
 

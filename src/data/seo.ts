@@ -1,5 +1,6 @@
 import { locationLinks } from './locations';
 import { quickLinks, serviceLinks } from './site';
+import { serviceSchemas } from './serviceSchema';
 
 export type Crumb = {
   name: string;
@@ -14,6 +15,14 @@ const segmentLabels: Record<string, string> = {
 export function breadcrumbsForPath(path: string, pageTitle?: string): Crumb[] {
   const crumbs: Crumb[] = [{ name: 'Home', href: '/' }];
   if (path === '/' || path === '') return crumbs;
+
+  // Service pages live at the root but belong under the Services hub.
+  const servicePage = serviceLinks.find((item) => item.href === path);
+  if (servicePage) {
+    crumbs.push({ name: 'Services', href: '/services/' });
+    crumbs.push({ name: serviceSchemas[path]?.name ?? servicePage.label, href: path });
+    return crumbs;
+  }
 
   const segments = path.replace(/^\/|\/$/g, '').split('/');
   let href = '';

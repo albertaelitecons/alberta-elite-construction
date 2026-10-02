@@ -12,15 +12,16 @@ interface Props {
 }
 
 const { kicker = 'Process', title, steps } = Astro.props;
+const isFive = steps.length === 5;
 ---
 
 <section class="k-process">
   <div class="k-wrap">
     <p class="k-kicker k-kicker-dark">{kicker}</p>
     <h2 class="k-why-title">{title}</h2>
-    <div class="k-process-steps">
+    <div class:list={['k-process-steps', isFive && 'is-5']}>
       <div class="k-process-bar" aria-hidden="true"></div>
-      <ol class="k-process-track">
+      <ol class:list={['k-process-track', isFive && 'is-5']}>
         {
           steps.map((item, index) => (
             <li>

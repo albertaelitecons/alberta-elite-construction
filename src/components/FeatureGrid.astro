@@ -19,6 +19,13 @@ const { kicker = 'Details', title, items, columns = 4 } = Astro.props;
   <div class="k-wrap">
     <p class="k-kicker k-kicker-dark">{kicker}</p>
     <h2 class="k-features-title">{title}</h2>
+    {
+      Astro.slots.has('default') && (
+        <div class="k-works-lead">
+          <slot />
+        </div>
+      )
+    }
     <ol class:list={['k-feature-board', columns === 3 && 'is-3']}>
       {
         items.map((item, index) => (
