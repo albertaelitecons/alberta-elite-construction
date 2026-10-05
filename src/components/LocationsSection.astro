@@ -8,7 +8,10 @@ interface Props {
   mapReferrerPolicy?: 'no-referrer-when-downgrade' | 'strict-origin-when-cross-origin';
 }
 
-const { mapSrc = site.mapEmbed, mapReferrerPolicy = 'no-referrer-when-downgrade' } = Astro.props;
+const {
+  mapSrc = site.mapEmbedBusiness,
+  mapReferrerPolicy = 'strict-origin-when-cross-origin',
+} = Astro.props;
 ---
 
 <section class="k-locations" id="locations">

@@ -23,9 +23,7 @@ export const site = {
   },
   mapUrl: 'https://maps.app.goo.gl/heADdaJM12KuJB7BA',
   reviewsUrl: 'https://maps.app.goo.gl/vVMoMr2XrGZu9CNM6',
-  mapEmbed:
-    'https://www.google.com/maps?q=51.0126481,-113.9833733&z=15&hl=en&output=embed',
-  /** Google Business Profile map embed used on the homepage, location pages, and contact page. */
+  /** Google Business Profile map embed used for every on-site Google Maps iframe. */
   mapEmbedBusiness:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1778.050887453656!2d-113.9833733!3d51.01264809999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2688c2b9fb67b215%3A0x323243fec9bc18a0!2sAlberta%20Elite%20Construction%20-%20Home%20Remodeling%20Calgary!5e1!3m2!1sen!2s!4v1791220119443!5m2!1sen!2s',
   serviceAreas:

@@ -13,9 +13,6 @@ import FAQ from '../../components/FAQ.astro';
 import ContactCTA from '../../components/ContactCTA.astro';
 import { site } from '../../data/site';
 
-const mapEmbed =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1961.0855376327088!2d-113.9833733!3d51.01264809999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2688c2b9fb67b215%3A0x323243fec9bc18a0!2sAlberta%20Elite%20Construction%20-%20Home%20Remodeling%20Calgary!5e1!3m2!1sen!2s!4v1790969951748!5m2!1sen!2s';
-
 const faqs = [
   {
     question: 'How much does it cost to renovate a basement in Calgary?',
@@ -333,7 +330,7 @@ const faqs = [
   </section>
 
   <ServicesSection follow />
-  <LocationsSection mapSrc={mapEmbed} mapReferrerPolicy="strict-origin-when-cross-origin" />
+  <LocationsSection />
   <FAQ title="Frequently Asked Questions About Basement Renovation in Calgary" items={faqs} />
   <ContactCTA>
     <Fragment slot="title">Renovate your Calgary basement with Alberta Elite Construction</Fragment>
