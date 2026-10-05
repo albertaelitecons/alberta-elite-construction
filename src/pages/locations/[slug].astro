@@ -107,7 +107,7 @@ const titleRest = titleBreak === -1 ? undefined : location.title.slice(titleBrea
     ]}
   />
 
-  <LocationsSection />
+  <LocationsSection mapSrc={site.mapEmbedBusiness} mapReferrerPolicy="strict-origin-when-cross-origin" />
 
   <ContactCTA>
     Tell us about your {location.name} project and we will send a clear written quote.
