@@ -68,7 +68,14 @@ const business = {
     areaServed: 'CA',
     availableLanguage: ['English'],
   },
-  sameAs: [site.mapUrl, site.reviewsUrl],
+  sameAs: [
+    site.mapUrl,
+    site.reviewsUrl,
+    site.social.facebook,
+    site.social.linkedin,
+    site.social.pinterest,
+    site.social.instagram,
+  ],
   knowsAbout: serviceLinks.map((service) => service.label),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
