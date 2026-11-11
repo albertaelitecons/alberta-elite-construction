@@ -2,6 +2,7 @@
 import { site, serviceLinks, quickLinks } from '../data/site';
 import { locationLinks } from '../data/locations';
 import PreFooter from './PreFooter.astro';
+import SocialLinks from './SocialLinks.astro';
 ---
 
 <footer>
@@ -14,6 +15,11 @@ import PreFooter from './PreFooter.astro';
           Alberta Elite Construction is your trusted partner for top-quality construction services in
           Calgary and the surrounding area - built to last, crafted to impress.
         </p>
+        <SocialLinks
+          heading="Follow us"
+          class="mt-6 text-white/70"
+          headingClass="text-white"
+        />
       </div>
 
       <div>

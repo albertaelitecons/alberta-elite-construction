@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import QuoteForm from '../components/QuoteForm.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { site } from '../data/site';
 ---
 
@@ -50,6 +51,7 @@ import { site } from '../data/site';
               <a href={site.mapUrl} target="_blank" rel="noopener noreferrer">{site.address.full}</a>
             </li>
           </ul>
+          <SocialLinks heading="Connect With Us" class="mt-8" />
           <div class="k-contact-map">
             <iframe
               title="Alberta Elite Construction on Google Maps"
