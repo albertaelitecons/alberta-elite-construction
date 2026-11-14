@@ -57,6 +57,16 @@ const id = tone === 'light' ? 'contact' : 'quote';
         </select>
       </div>
     </div>
+    <div class="k-field k-field-wide">
+      <label for={`${id}-address`}>Address (optional)</label>
+      <input
+        id={`${id}-address`}
+        type="text"
+        name="address"
+        autocomplete="street-address"
+        placeholder="Enter your address"
+      />
+    </div>
     {
       !compact && (
         <div class="k-field k-field-wide">
