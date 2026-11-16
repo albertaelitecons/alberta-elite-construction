@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "id": 297707195,
+      "slug": "repair-replace-bathroom-fixtures-remodel-calgary",
+      "title": "Repair or Replace Bathroom Fixtures in Calgary Remodel",
+      "excerpt": "Decide quickly whether to repair or replace fixtures during a Calgary bathroom remodel. This guide explains when repair makes sense, when replacement is smarter, and how to plan the work.",
+      "url": "https://albertaec.ca/blog/repair-replace-bathroom-fixtures-remodel-calgary/",
+      "publishedAt": "2026-11-16T21:30:54.917Z",
+      "image": "/blog-images/uploads/1-philosophy-feature-wall.jpg"
+    },
+    {
       "id": 2090170881,
       "slug": "kitchen-remodel-replace-countertops",
       "title": "Kitchen Remodel: When to Replace Calgary Countertops",
@@ -90,5 +99,6 @@
       "publishedAt": "2026-11-16T20:58:00.000Z",
       "image": "/blog-images/uploads/1-philosophy-feature-wall.jpg"
     }
-  ]
+  ],
+  "ownedListing": true
 }
